@@ -15,312 +15,369 @@ export const PAGES_MENU = [
         }
       },
       {
-        path: 'editors',
+        path: 'apps',
         data: {
           menu: {
-            title: 'general.menu.editors',
-            icon: 'ion-edit',
+            title: 'general.menu.apps',
+            icon: 'ion-laptop',
             selected: false,
             expanded: false,
-            order: 100,
+            order: 100
           }
         },
-        children: [
+        children:[
           {
-            path: 'ckeditor',
+            path: 'apps/view',
             data: {
               menu: {
-                title: 'general.menu.ck_editor',
+                title: 'general.menu.viewapps',
+                selected: false,
+                expanded: false
+              }
+            }
+          },
+          {
+            path: 'apps/add',
+            data: {
+              menu: {
+                title: 'general.menu.addapp',
+                selected: false,
+                expanded: false
               }
             }
           }
-        ]
+        ],
       },
       {
-        path: 'components',
+        path: 'settings',
         data: {
           menu: {
-            title: 'general.menu.components',
-            icon: 'ion-gear-a',
+            title: 'general.menu.settings',
+            icon: 'ion-settings',
             selected: false,
             expanded: false,
-            order: 250,
+            order: 200
           }
-        },
-        children: [
-          {
-            path: 'treeview',
-            data: {
-              menu: {
-                title: 'general.menu.tree_view',
-              }
-            }
-          }
-        ]
+        }
       },
       {
-        path: 'charts',
+        path: 'help',
         data: {
           menu: {
-            title: 'general.menu.charts',
+            title: 'general.menu.help',
+            icon: 'ion-help',
+            selected: false,
+            expanded: false,
+            order: 200
+          }
+        }
+      },
+      {
+        // parent route
+        path: '',
+        data: {
+
+          // parent menu configuration
+          menu: {
+            title: 'Demo',
             icon: 'ion-stats-bars',
-            selected: false,
-            expanded: false,
-            order: 200,
-          }
-        },
-        children: [
-          {
-            path: 'chartist-js',
-            data: {
-              menu: {
-                title: 'general.menu.chartist_js',
-              }
-            }
-          }
-        ]
-      },
-      {
-        path: 'ui',
-        data: {
-          menu: {
-            title: 'general.menu.ui_features',
-            icon: 'ion-android-laptop',
             selected: false,
             expanded: false,
             order: 300,
           }
         },
+
+        // children routes
         children: [
           {
-            path: 'typography',
+            path: 'editors',
             data: {
               menu: {
-                title: 'general.menu.typography',
+                title: 'general.menu.editors',
+                icon: 'ion-edit',
+                selected: false,
+                expanded: false,
+                order: 100,
               }
-            }
+            },
+            children: [
+              {
+                path: 'ckeditor',
+                data: {
+                  menu: {
+                    title: 'general.menu.ck_editor',
+                  }
+                }
+              }
+            ]
           },
           {
-            path: 'buttons',
+            path: 'components',
             data: {
               menu: {
-                title: 'general.menu.buttons',
+                title: 'general.menu.components',
+                icon: 'ion-gear-a',
+                selected: false,
+                expanded: false,
+                order: 250,
               }
-            }
+            },
+            children: [
+              {
+                path: 'treeview',
+                data: {
+                  menu: {
+                    title: 'general.menu.tree_view',
+                  }
+                }
+              }
+            ]
           },
           {
-            path: 'icons',
+            path: 'charts',
             data: {
               menu: {
-                title: 'general.menu.icons',
+                title: 'general.menu.charts',
+                icon: 'ion-stats-bars',
+                selected: false,
+                expanded: false,
+                order: 200,
               }
-            }
+            },
+            children: [
+              {
+                path: 'chartist-js',
+                data: {
+                  menu: {
+                    title: 'general.menu.chartist_js',
+                  }
+                }
+              }
+            ]
           },
           {
-            path: 'modals',
+            path: 'ui',
             data: {
               menu: {
-                title: 'general.menu.modals',
+                title: 'general.menu.ui_features',
+                icon: 'ion-android-laptop',
+                selected: false,
+                expanded: false,
+                order: 300,
               }
-            }
+            },
+            children: [
+              {
+                path: 'typography',
+                data: {
+                  menu: {
+                    title: 'general.menu.typography',
+                  }
+                }
+              },
+              {
+                path: 'buttons',
+                data: {
+                  menu: {
+                    title: 'general.menu.buttons',
+                  }
+                }
+              },
+              {
+                path: 'icons',
+                data: {
+                  menu: {
+                    title: 'general.menu.icons',
+                  }
+                }
+              },
+              {
+                path: 'modals',
+                data: {
+                  menu: {
+                    title: 'general.menu.modals',
+                  }
+                }
+              },
+              {
+                path: 'slim',
+                data: {
+                  menu: {
+                    title: 'Slim loading bar',
+                  }
+                }
+              },
+              {
+                path: 'grid',
+                data: {
+                  menu: {
+                    title: 'general.menu.grid',
+                  }
+                }
+              },
+            ]
           },
           {
-            path: 'slim',
+            path: 'forms',
             data: {
               menu: {
-                title: 'Slim loading bar',
+                title: 'general.menu.form_elements',
+                icon: 'ion-compose',
+                selected: false,
+                expanded: false,
+                order: 400,
               }
-            }
+            },
+            children: [
+              {
+                path: 'inputs',
+                data: {
+                  menu: {
+                    title: 'general.menu.form_inputs',
+                  }
+                }
+              },
+              {
+                path: 'layouts',
+                data: {
+                  menu: {
+                    title: 'general.menu.form_layouts',
+                  }
+                }
+              }
+            ]
           },
           {
-            path: 'grid',
+            path: 'tables',
             data: {
               menu: {
-                title: 'general.menu.grid',
+                title: 'general.menu.tables',
+                icon: 'ion-grid',
+                selected: false,
+                expanded: false,
+                order: 500,
               }
-            }
-          },
-        ]
-      },
-      {
-        path: 'forms',
-        data: {
-          menu: {
-            title: 'general.menu.form_elements',
-            icon: 'ion-compose',
-            selected: false,
-            expanded: false,
-            order: 400,
-          }
-        },
-        children: [
-          {
-            path: 'inputs',
-            data: {
-              menu: {
-                title: 'general.menu.form_inputs',
+            },
+            children: [
+              {
+                path: 'basictables',
+                data: {
+                  menu: {
+                    title: 'general.menu.basic_tables',
+                  }
+                }
+              },
+              {
+                path: 'smarttables',
+                data: {
+                  menu: {
+                    title: 'general.menu.smart_tables',
+                  }
+                }
+              },
+              {
+                path: 'datatables',
+                data: {
+                  menu: {
+                    title: 'Data Tables',
+                  }
+                }
+              },
+              {
+                path: 'hottables',
+                data: {
+                  menu: {
+                    title: 'Hot Tables',
+                  }
+                }
               }
-            }
-          },
-          {
-            path: 'layouts',
-            data: {
-              menu: {
-                title: 'general.menu.form_layouts',
-              }
-            }
-          }
-        ]
-      },
-      {
-        path: 'tables',
-        data: {
-          menu: {
-            title: 'general.menu.tables',
-            icon: 'ion-grid',
-            selected: false,
-            expanded: false,
-            order: 500,
-          }
-        },
-        children: [
-          {
-            path: 'basictables',
-            data: {
-              menu: {
-                title: 'general.menu.basic_tables',
-              }
-            }
+            ]
           },
           {
-            path: 'smarttables',
+            path: 'maps',
             data: {
               menu: {
-                title: 'general.menu.smart_tables',
+                title: 'general.menu.maps',
+                icon: 'ion-ios-location-outline',
+                selected: false,
+                expanded: false,
+                order: 600,
               }
-            }
+            },
+            children: [
+              {
+                path: 'googlemaps',
+                data: {
+                  menu: {
+                    title: 'general.menu.google_maps',
+                  }
+                }
+              },
+              {
+                path: 'leafletmaps',
+                data: {
+                  menu: {
+                    title: 'general.menu.leaflet_maps',
+                  }
+                }
+              },
+              {
+                path: 'bubblemaps',
+                data: {
+                  menu: {
+                    title: 'general.menu.bubble_maps',
+                  }
+                }
+              },
+              {
+                path: 'linemaps',
+                data: {
+                  menu: {
+                    title: 'general.menu.line_maps',
+                  }
+                }
+              }
+            ]
           },
-          {
-            path: 'datatables',
-            data: {
-              menu: {
-                title: 'Data Tables',
-              }
-            }
-          },
-           {
-             path: 'hottables',
-             data: {
-               menu: {
-                 title: 'Hot Tables',
-               }
-             }
-           }
-        ]
-      },
-      {
-        path: 'maps',
-        data: {
-          menu: {
-            title: 'general.menu.maps',
-            icon: 'ion-ios-location-outline',
-            selected: false,
-            expanded: false,
-            order: 600,
-          }
-        },
-        children: [
-          {
-            path: 'googlemaps',
-            data: {
-              menu: {
-                title: 'general.menu.google_maps',
-              }
-            }
-          },
-          {
-            path: 'leafletmaps',
-            data: {
-              menu: {
-                title: 'general.menu.leaflet_maps',
-              }
-            }
-          },
-          {
-            path: 'bubblemaps',
-            data: {
-              menu: {
-                title: 'general.menu.bubble_maps',
-              }
-            }
-          },
-          {
-            path: 'linemaps',
-            data: {
-              menu: {
-                title: 'general.menu.line_maps',
-              }
-            }
-          }
-        ]
-      },
-      {
-        path: '',
-        data: {
-          menu: {
-            title: 'general.menu.pages',
-            icon: 'ion-document',
-            selected: false,
-            expanded: false,
-            order: 650,
-          }
-        },
-        children: [
-          {
-            path: ['/login'],
-            data: {
-              menu: {
-                title: 'general.menu.login'
-              }
-            }
-          },
-          {
-            path: ['/register'],
-            data: {
-              menu: {
-                title: 'general.menu.register'
-              }
-            }
-          }
-        ]
-      },
-      {
-        path: '',
-        data: {
-          menu: {
-            title: 'general.menu.menu_level_1',
-            icon: 'ion-ios-more',
-            selected: false,
-            expanded: false,
-            order: 700,
-          }
-        },
-        children: [
           {
             path: '',
             data: {
               menu: {
-                title: 'general.menu.menu_level_1_1',
-                url: '#'
+                title: 'general.menu.pages',
+                icon: 'ion-document',
+                selected: false,
+                expanded: false,
+                order: 650,
               }
-            }
+            },
+            children: [
+              {
+                path: ['/login'],
+                data: {
+                  menu: {
+                    title: 'general.menu.login'
+                  }
+                }
+              },
+              {
+                path: ['/register'],
+                data: {
+                  menu: {
+                    title: 'general.menu.register'
+                  }
+                }
+              }
+            ]
           },
           {
             path: '',
             data: {
               menu: {
-                title: 'general.menu.menu_level_1_2',
-                url: '#'
+                title: 'general.menu.menu_level_1',
+                icon: 'ion-ios-more',
+                selected: false,
+                expanded: false,
+                order: 700,
               }
             },
             children: [
@@ -328,27 +385,48 @@ export const PAGES_MENU = [
                 path: '',
                 data: {
                   menu: {
-                    title: 'general.menu.menu_level_1_2_1',
+                    title: 'general.menu.menu_level_1_1',
                     url: '#'
                   }
                 }
+              },
+              {
+                path: '',
+                data: {
+                  menu: {
+                    title: 'general.menu.menu_level_1_2',
+                    url: '#'
+                  }
+                },
+                children: [
+                  {
+                    path: '',
+                    data: {
+                      menu: {
+                        title: 'general.menu.menu_level_1_2_1',
+                        url: '#'
+                      }
+                    }
+                  }
+                ]
               }
             ]
+          },
+          {
+            path: '',
+            data: {
+              menu: {
+                title: 'general.menu.external_link',
+                url: 'http://akveo.com',
+                icon: 'ion-android-exit',
+                order: 800,
+                target: '_blank'
+              }
+            }
           }
         ]
       },
-      {
-        path: '',
-        data: {
-          menu: {
-            title: 'general.menu.external_link',
-            url: 'http://akveo.com',
-            icon: 'ion-android-exit',
-            order: 800,
-            target: '_blank'
-          }
-        }
-      }
+
     ]
   }
 ];
