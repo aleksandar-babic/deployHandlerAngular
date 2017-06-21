@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
+import * as screenfull from 'screenfull';
 import {GlobalState} from '../../../global.state';
 
 import {AuthService} from "../../services/authService/auth.service";
@@ -28,6 +29,13 @@ export class BaPageTop {
 
   public scrolledChanged(isScrolled) {
     this.isScrolled = isScrolled;
+
+  }
+  public requestFullScreen(){
+    if (screenfull.enabled) {
+      screenfull.toggle();
+    }
+    console.log("Toggle fullscreen");
   }
 
   public onLogout(){

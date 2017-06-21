@@ -48,4 +48,9 @@ export class Login {
     }
   }
 
+  ngOnInit(){
+    if(this.authService.isLoggedIn())
+      this.router.navigateByUrl('/');
+  }
+
 }
