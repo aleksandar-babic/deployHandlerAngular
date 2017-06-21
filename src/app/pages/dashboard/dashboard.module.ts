@@ -3,7 +3,7 @@ import { CommonModule }  from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppTranslationModule } from '../../app.translation.module';
 import { NgaModule } from '../../theme/nga.module';
-
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { Dashboard } from './dashboard.component';
 import { routing }       from './dashboard.routing';
 
@@ -22,34 +22,31 @@ import { PieChartService } from './pieChart/pieChart.service';
 import { TodoService } from './todo/todo.service';
 import { TrafficChartService } from './trafficChart/trafficChart.service';
 import { UsersMapService } from './usersMap/usersMap.service';
+import {SmartTablesService} from "../tables/components/smartTables/smartTables.service";
+import {SmartTables} from "../tables/components/smartTables/smartTables.component";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     AppTranslationModule,
+    Ng2SmartTableModule,
     NgaModule,
     routing
   ],
   declarations: [
-    PopularApp,
     PieChart,
-    TrafficChart,
-    UsersMap,
     LineChart,
-    Feed,
     Todo,
-    Calendar,
+    SmartTables,
     Dashboard
   ],
   providers: [
-    CalendarService,
-    FeedService,
     LineChartService,
     PieChartService,
     TodoService,
-    TrafficChartService,
-    UsersMapService
+    UsersMapService,
+    SmartTablesService
   ]
 })
 export class DashboardModule {}
