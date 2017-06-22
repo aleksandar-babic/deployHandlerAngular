@@ -3,6 +3,7 @@ export class Chart {
               public description: string,
               public stats: string,
               public icon: string,
+              public usage?: string,
               public id?: string
   ) {}
 }

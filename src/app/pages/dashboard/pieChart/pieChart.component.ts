@@ -21,7 +21,7 @@ export class PieChart {
   private _init = false;
 
   constructor(private _pieChartService: PieChartService,private _baConfig:BaThemeConfigProvider, private toastrService: ToastrService) {
-    this.charts = this._pieChartService.getData();
+    this.charts = this._pieChartService.getInitData();
     setInterval(()=>{this._getStats();},1000);
   }
 
@@ -33,39 +33,13 @@ export class PieChart {
   }
 
   private _getStats(){
-    let pieColor = this._baConfig.get().colors.custom.dashboardPieChart;
     this._pieChartService.getStats().subscribe(data => {
-      let statsArray : Array<Chart>= [
-        {
-          color: pieColor,
-          description: 'dashboard.cpu_usage',
-          stats: data.cpu.load,
-          icon: 'cpu',
-        }, {
-          color: pieColor,
-          description: 'dashboard.ram_usage',
-          stats: data.ram.total-data.ram.free + 'MB',
-          icon: 'ram',
-        }, {
-          color: pieColor,
-          description: 'dashboard.user_apps',
-          stats: data.apps.total,
-          icon: 'apps',
-        }, {
-          color: pieColor,
-          description: 'dashboard.user_started_apps',
-          stats: data.apps.running,
-          icon: 'runningApps',
-        }
-      ];
-      this.charts[0].stats = statsArray[0].stats;
-      this.charts[1].stats = statsArray[1].stats;
-      this.charts[2].stats = statsArray[2].stats;
-      this.charts[3].stats = statsArray[3].stats;
-      this._updatePieCharts(data.cpu.usage,data.ram.usage);
-      return statsArray;
+      this.charts[0].stats = data[0].stats;
+      this.charts[1].stats = data[1].stats;
+      this.charts[2].stats = data[2].stats;
+      this.charts[3].stats = data[3].stats;
+      this._updatePieCharts(data[0].usage,data[1].usage);
     }, error => {this.toastrService.warning('Error while fetching stats.','Oh no.');});
-
   }
 
   private _loadPieCharts() {
@@ -93,7 +67,7 @@ export class PieChart {
   }
 
   private _updatePieCharts(cpu,ram) {
-    jQuery('#ram').data('easyPieChart').update(ram);
     jQuery('#cpu').data('easyPieChart').update(cpu);
+    jQuery('#ram').data('easyPieChart').update(ram);
   }
 }
