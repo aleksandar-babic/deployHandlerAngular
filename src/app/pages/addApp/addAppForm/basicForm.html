@@ -1,22 +1,18 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
   <div class="form-group">
-    <div class="input-group">
+    <div class="input-group" [ngClass]="{'has-error': (!appName.valid && appName.touched), 'has-success': (appName.valid && appName.touched)}">
       <input type="text" class="form-control with-primary-addon" placeholder="App name" aria-describedby="appName" [formControl]="appName">
       <span class="input-group-addon input-group-addon-primary addon-right" id="appName">.deployhandler.com</span>
     </div>
   </div>
-  <div class="form-group">
+  <div class="form-group" [ngClass]="{'has-error': (!appEntryPoint.valid && appEntryPoint.touched), 'has-success': (appEntryPoint.valid && appEntryPoint.touched)}">
     <label for="appEntryPoint">Entry point</label>
     <input type="text" class="form-control" id="appEntryPoint" name="appEntryPoint" placeholder="Example: server.js" [formControl]="appEntryPoint">
   </div>
-  <div class="form-group">
+  <div class="form-group" [ngClass]="{'has-error': (!appPort.valid && appPort.touched), 'has-success': (appPort.valid && appPort.touched)}">
     <label for="appPort">Port number</label>
-    <div class="input-group">
-      <input type="text" class="form-control" id="appPort" name="appPort" placeholder="Port your app is using" [formControl]="appPort">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">List</button>
-      </span>
-    </div>
+      <input type="text" class="form-control" id="appPort" name="appPort" placeholder="Port your app is using"
+             [formControl]="appPort">
   </div>
   <div class="appOptions">
     <div class="form-group">
@@ -24,5 +20,5 @@
       <ba-checkbox [(ngModel)]="isNginx" [label]="'Use NGINX reverse proxy'" name="nginx" [formControl]="nginx" ngDefaultControl [disabled]="true"></ba-checkbox>
     </div>
   </div>
-  <button type="submit" class="btn btn-danger" [disabled]="!form.valid">Add app</button>
+  <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Add app</button>
 </form>

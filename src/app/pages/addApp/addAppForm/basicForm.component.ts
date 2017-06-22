@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import {ToastrService} from "ngx-toastr";
 
+
 @Component({
   selector: 'basic-form',
   templateUrl: './basicForm.html',
@@ -21,7 +22,11 @@ export class BasicForm {
     this.form = fb.group({
       'appName': ['', Validators.compose([Validators.required])],
       'appEntryPoint': ['', Validators.compose([Validators.required])],
-      'appPort': ['', Validators.required],
+      'appPort': ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(5),
+      ])],
       'npm': ['', Validators.required],
       'nginx': ['', Validators.required]
     });
@@ -31,4 +36,5 @@ export class BasicForm {
     this.npm = this.form.controls['npm'];
     this.nginx = this.form.controls['nginx'];
   }
+
 }
