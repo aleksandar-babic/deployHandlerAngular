@@ -21,14 +21,15 @@ import { NgaModule } from './theme/nga.module';
 import { PagesModule } from './pages/pages.module';
 import {AuthGuard} from "./_guard/auth.guard";
 import {AuthService} from "./theme/services/authService/auth.service";
-
+import {AppsService} from "./theme/services/appsService/apps.service";
 
 // Application wide providers
 const APP_PROVIDERS = [
   AppState,
   GlobalState,
   AuthGuard,
-  AuthService
+  AuthService,
+  AppsService
 ];
 
 export type StoreType = {
