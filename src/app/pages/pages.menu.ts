@@ -27,7 +27,7 @@ export const PAGES_MENU = [
         },
         children:[
           {
-            path: 'apps/view',
+            path: 'view',
             data: {
               menu: {
                 title: 'general.menu.viewapps',
@@ -37,7 +37,7 @@ export const PAGES_MENU = [
             }
           },
           {
-            path: 'apps/add',
+            path: 'add',
             data: {
               menu: {
                 title: 'general.menu.addapp',

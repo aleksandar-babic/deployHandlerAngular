@@ -9,6 +9,8 @@ import { User } from "./user.model";
 export class AuthService {
   constructor(private http: Http) {}
 
+  //TODO Use angular jwt module, handle token refresh
+
   signup(user: User) {
     const body = JSON.stringify(user);
     const headers = new Headers({'Content-Type': 'application/json'});
