@@ -6,22 +6,10 @@ import { NgaModule } from '../../theme/nga.module';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { Dashboard } from './dashboard.component';
 import { routing }       from './dashboard.routing';
-
-import { PopularApp } from './popularApp';
 import { PieChart } from './pieChart';
-import { TrafficChart } from './trafficChart';
-import { UsersMap } from './usersMap';
-import { LineChart } from './lineChart';
-import { Feed } from './feed';
-import { Todo } from './todo';
-import { Calendar } from './calendar';
-import { CalendarService } from './calendar/calendar.service';
-import { FeedService } from './feed/feed.service';
-import { LineChartService } from './lineChart/lineChart.service';
 import { PieChartService } from './pieChart/pieChart.service';
+import { Todo } from './todo';
 import { TodoService } from './todo/todo.service';
-import { TrafficChartService } from './trafficChart/trafficChart.service';
-import { UsersMapService } from './usersMap/usersMap.service';
 import {SmartTablesService} from "../tables/components/smartTables/smartTables.service";
 import {SmartTables} from "../tables/components/smartTables/smartTables.component";
 
@@ -36,16 +24,13 @@ import {SmartTables} from "../tables/components/smartTables/smartTables.componen
   ],
   declarations: [
     PieChart,
-    LineChart,
     Todo,
     SmartTables,
     Dashboard
   ],
   providers: [
-    LineChartService,
     PieChartService,
     TodoService,
-    UsersMapService,
     SmartTablesService
   ]
 })

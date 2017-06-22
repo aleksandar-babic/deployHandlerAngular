@@ -19,6 +19,7 @@ export class PieChart {
 
   public charts: Array<Chart>;
   private _init = false;
+  private _thrownError = false;
 
   constructor(private _pieChartService: PieChartService,private _baConfig:BaThemeConfigProvider, private toastrService: ToastrService) {
     this.charts = this._pieChartService.getInitData();
@@ -39,7 +40,12 @@ export class PieChart {
       this.charts[2].stats = data[2].stats;
       this.charts[3].stats = data[3].stats;
       this._updatePieCharts(data[0].usage,data[1].usage);
-    }, error => {this.toastrService.warning('Error while fetching stats.','Oh no.');});
+    }, error => {
+      if(!this._thrownError) {
+        this.toastrService.warning('Error while fetching stats.', 'Oh no.');
+        this._thrownError = true;
+      }
+    });
   }
 
   private _loadPieCharts() {
