@@ -20,10 +20,11 @@ export class PieChart {
   public charts: Array<Chart>;
   private _init = false;
   private _thrownError = false;
+  private _statsInterval;
 
   constructor(private _pieChartService: PieChartService,private _baConfig:BaThemeConfigProvider, private toastrService: ToastrService) {
     this.charts = this._pieChartService.getInitData();
-    setInterval(()=>{this._getStats();},1000);
+    this._statsInterval = setInterval(()=>{this._getStats();},1000);
   }
 
   ngAfterViewInit() {
@@ -75,5 +76,9 @@ export class PieChart {
   private _updatePieCharts(cpu,ram) {
     jQuery('#cpu').data('easyPieChart').update(cpu);
     jQuery('#ram').data('easyPieChart').update(ram);
+  }
+
+  ngOnDestroy(){
+    clearInterval(this._statsInterval);
   }
 }
