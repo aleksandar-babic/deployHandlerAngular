@@ -17,8 +17,8 @@ import { BorderedTable } from './components/basicTables/components/borderedTable
 import { HoverTable } from './components/basicTables/components/hoverTable';
 import { CondensedTable } from './components/basicTables/components/condensedTable';
 import { ContextualTable } from './components/basicTables/components/contextualTable';
-import { SmartTables } from './components/smartTables/smartTables.component';
-import { SmartTablesService } from './components/smartTables/smartTables.service';
+import { SmartTables } from './components/appsTables/smartTables.component';
+import { SmartTablesService } from './components/appsTables/smartTables.service';
 import { DataTables } from './components/dataTables/dataTables.component';
 import { DataTablesService } from './components/dataTables/dataTables.service';
 

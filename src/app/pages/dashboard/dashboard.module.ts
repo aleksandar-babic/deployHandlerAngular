@@ -6,12 +6,13 @@ import { NgaModule } from '../../theme/nga.module';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { Dashboard } from './dashboard.component';
 import { routing }       from './dashboard.routing';
+
 import { PieChart } from './pieChart';
 import { PieChartService } from './pieChart/pieChart.service';
 import { Todo } from './todo';
 import { TodoService } from './todo/todo.service';
-import {SmartTablesService} from "../tables/components/smartTables/smartTables.service";
-import {SmartTables} from "../tables/components/smartTables/smartTables.component";
+import {SmartTablesService} from "../tables/components/appsTables/smartTables.service";
+import {SmartTables} from "../tables/components/appsTables/smartTables.component";
 
 @NgModule({
   imports: [
