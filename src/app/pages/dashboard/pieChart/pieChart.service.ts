@@ -2,34 +2,30 @@ import {Injectable} from '@angular/core';
 import {BaThemeConfigProvider, colorHelper} from '../../../theme';
 import {Observable} from "rxjs";
 import {Http, Response} from "@angular/http";
+import {Chart} from "./pieChart.model";
 
 @Injectable()
 export class PieChartService {
 
   constructor(private _baConfig:BaThemeConfigProvider,private http: Http) {
-  }
 
+  }
 
   getStats() {
     const token = localStorage.getItem('token')
       ? '?token=' + localStorage.getItem('token')
       : '';
     return this.http.get('http://deployhandler.com:3000/api/stats' + token)
-      .map((response: Response) => {
-        const stats = response.json();
-        return stats;
-      })
+      .map((response: Response) =>response.json())
       .catch((error: Response) => {
         return Observable.throw(error);
-      });
+      })
   }
 
   getData() {
     let pieColor = this._baConfig.get().colors.custom.dashboardPieChart;
-    this.getStats().subscribe(data => {
-
-    });
-    return [
+    let chartsArray : Array<Chart>;
+    chartsArray = [
       {
         color: pieColor,
         description: 'dashboard.cpu_usage',
@@ -52,5 +48,6 @@ export class PieChartService {
         icon: 'runningApps',
       }
     ];
+    return chartsArray;
   }
 }

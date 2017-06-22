@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {BaThemeConfigProvider} from '../../../theme';
 
 import {TodoService} from './todo.service';
+import {AppsService} from "../../../theme/services/appsService/apps.service";
 
 @Component({
   selector: 'todo',
@@ -15,7 +16,7 @@ export class Todo {
   public todoList:Array<any>;
   public newTodoText:string = '';
 
-  constructor(private _baConfig:BaThemeConfigProvider, private _todoService:TodoService) {
+  constructor(private _baConfig:BaThemeConfigProvider, private _todoService:TodoService, private appsService: AppsService) {
     this.todoList = this._todoService.getTodoList();
 
     this.todoList.forEach((item) => {

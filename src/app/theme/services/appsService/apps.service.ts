@@ -8,14 +8,12 @@ import { App } from "./apps.model";
 
 @Injectable()
 export class AppsService {
-  private apps: App[] = [];
+  apps: App[] = [];
 
   constructor(private http: Http) {
   }
 
-  getAppsArray(){
-    return this.apps;
-  }
+
   addApp(app: App) {
     const body = JSON.stringify(app);
     const headers = new Headers({'Content-Type': 'application/json'});
