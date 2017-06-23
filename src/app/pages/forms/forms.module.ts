@@ -46,7 +46,7 @@ import { WithoutLabelsForm } from './components/layouts/components/withoutLabels
     InlineForm,
     BlockForm,
     HorizontalForm,
-    //BasicForm,
+    BasicForm,
     WithoutLabelsForm
   ]
 })
