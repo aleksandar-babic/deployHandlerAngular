@@ -16,7 +16,7 @@ export const routes: Routes = [
     loadChildren: 'app/pages/register/register.module#RegisterModule'
   },
   {
-    path: 'pages',
+    path: '',
     component: Pages,
     canActivate: [AuthGuard],
     children: [
