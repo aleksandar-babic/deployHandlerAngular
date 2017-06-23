@@ -1,9 +1,31 @@
 <div class="row">
   <div class="col-md-7">
-    <ba-card title="Helper" baCardClass="with-scroll">
-      <p>Hello app!</p>
+    <ba-card title="Helper" baCardClass="with-scroll lists-widget">
+      <div class="section-block">
+        <h2>So.. what actually happens in backend when I add an app?</h2>
+        <p>If all app details are valid, we will first contact our <span class="bold-text">API server</span> which will than contact our <span class="bold-text">App hosting server</span> to
+          create new directory for app in user's home directory, setup <span class="bold-text">NGINX reverse proxy</span> and contact <span class="bold-text">Cloudflare API</span> to add subdomain to DNS.</p>
+        <div class="section-block">
+          <h5 class="list-header">Order of actions that happen once new app is added:</h5>
+          <ol class="blur">
+            <li><span>Front-end will send request to our API server</span></li>
+            <li style="color:#ff0000;"><span>API server contats our APP server (executes shell script to add new app)</span>
+              <ol>
+                <li style="color:#3cd2ff"><span>Shell script create new directory for app(It can be reached from SFTP using same login as for our web app).</span></li>
+                <li style="color:#6bd609"><span>Shell script setups NGINX reverse proxy vhost.</span></li>
+                <li><span>Shell script sends an request to Cloudflare API to add new domain to deployhandler.com DNS.</span></li>
+              </ol>
+            </li>
+            <li><span>If all things above were done without error, API server will add new MongoDB object to database.</span>
+          </ol>
+          <div class="accent" style="color:#ff0000;border-left: 4px solid #ff0000;">Our API server is running on Ubuntu LTS headless server, it's written in pure JavaScript using NodeJS,Express.js and many other modules.</div>
+          <div class="accent" style="color:#3cd2ff;border-left:4px solid #3cd2ff">SFTP(Secure File Transfer Protocol) is like FTP but on steroids. It adds password encryption, can resume interrupted file transfers and other cool things.</div>
+          <div class="accent" style="color:#6bd609;border-left: 4px solid #6bd609;">NGINX Reverse proxy allows you to have your app running on port 80(443 will be supported in future) just like any web site, even tho it's actually running on some other port(like 3000).</div>
+        </div>
+      </div>
     </ba-card>
   </div>
+
   <div class="col-md-5">
     <ba-card title="App deployer" baCardClass="with-scroll">
       <basic-form></basic-form>

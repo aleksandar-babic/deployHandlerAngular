@@ -13,6 +13,9 @@ export class AppsService {
   constructor(private http: Http) {
   }
 
+  getAppsArray(){
+    return this.apps;
+  }
 
   addApp(app: App) {
     const body = JSON.stringify(app);
