@@ -19,7 +19,7 @@
             <li><span>If all things above were done without error, API server will add new MongoDB object to database.</span>
           </ol>
           <div class="accent" style="color:#ff0000;border-left: 4px solid #ff0000;">Our API server is running on Ubuntu LTS headless server, it's written in pure JavaScript using NodeJS,Express.js and many other modules.
-           Complete documentation for API server endpoints can be found <a href="https://api.deployhandler.com" target="_blank">here</a></div>
+           Complete documentation for API endpoints can be found <a href="https://api.deployhandler.com" target="_blank">here</a></div>
           <div class="accent" style="color:#3cd2ff;border-left:4px solid #3cd2ff">SFTP(Secure File Transfer Protocol) is like FTP but on steroids. It adds password encryption, can resume interrupted file transfers and other cool things.</div>
           <div class="accent" style="color:#6bd609;border-left: 4px solid #6bd609;">NGINX Reverse proxy allows you to have your app running on port 80(443 will be supported in future) just like any web site, even tho it's actually running on some other port(like 3000).</div>
         </div>
@@ -31,5 +31,6 @@
     <ba-card title="App deployer" baCardClass="with-scroll">
       <basic-form></basic-form>
     </ba-card>
+    <div class="alert alert-danger">We don't support HTTPS and IPv6 yet. HTTPS support is planned for next version.</div>
   </div>
 </div>

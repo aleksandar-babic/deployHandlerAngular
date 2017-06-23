@@ -23,6 +23,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
       { path: 'apps/add', loadChildren: './addApp/addApp.module#AddAppModule' },
+      { path: 'apps/manage', loadChildren: './manageApps/manageApps.module#ManageAppsModule' },
       { path: 'editors', loadChildren: './editors/editors.module#EditorsModule' },
       { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
       { path: 'ui', loadChildren: './ui/ui.module#UiModule' },

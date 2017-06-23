@@ -27,7 +27,7 @@ export const PAGES_MENU = [
         },
         children:[
           {
-            path: 'view',
+            path: 'manage',
             data: {
               menu: {
                 title: 'general.menu.viewapps',
