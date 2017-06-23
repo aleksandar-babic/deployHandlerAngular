@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import {ToastrService} from "ngx-toastr";
+import {AppsService} from "../../../theme/services/appsService/apps.service";
+import {App} from "../../../theme/services/appsService/apps.model";
 
 
 @Component({
@@ -18,7 +20,7 @@ export class BasicForm {
   isNpm: boolean = true;
   isNginx: boolean = true;
 
-  constructor(fb:FormBuilder,private toastrService: ToastrService) {
+  constructor(fb:FormBuilder,private toastrService: ToastrService, private appsService: AppsService) {
     this.form = fb.group({
       'appName': ['', Validators.compose([Validators.required])],
       'appEntryPoint': ['', Validators.compose([Validators.required])],
@@ -35,6 +37,20 @@ export class BasicForm {
     this.appPort = this.form.controls['appPort'];
     this.npm = this.form.controls['npm'];
     this.nginx = this.form.controls['nginx'];
+  }
+
+  onSubmit() {
+    const app = new App(this.form.value.appName,this.form.value.appEntryPoint,this.form.value.appPort);
+    this.appsService.addApp(app)
+      .subscribe(
+        data => {
+          this.toastrService.success('App ' + app.name + ' has been added.','Good job!');
+          this.form.reset();
+        },
+        error => {
+          this.toastrService.warning(JSON.parse(error._body).message,'Oh no.');
+        }
+      );
   }
 
 }
