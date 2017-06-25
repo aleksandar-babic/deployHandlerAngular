@@ -10,15 +10,15 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let app of tableData" class="no-top-border">
-      <td><input type="text" disabled [(ngModel)]="app.name"></td>
-      <td>{{app.entryPoint}}</td>
-      <td>{{app.port}}</td>
-      <td><input type="text" disabled [(ngModel)]="app.status" [ngStyle]="{'color':(app.status=='stopped')?'#e85656':'#90b900'}"></td>
+    <tr *ngFor="let app of tableData; let i = index" class="no-top-border">
+      <td><input type="text" disabled [(ngModel)]="tableData[i].name"></td>
+      <td><input type="text" disabled [(ngModel)]="tableData[i].entryPoint"></td>
+      <td><input type="text" disabled [(ngModel)]="tableData[i].port"></td>
+      <td><input type="text" disabled [(ngModel)]="tableData[i].status" [ngStyle]="{'color':(tableData[i].status=='stopped')?'#e85656':'#90b900'}"></td>
       <td>
-        <button class="status-button btn btn-xs btn-success" (click)="onStart(app.appId)">Start</button>
-        <button class="status-button btn btn-xs btn-danger" (click)="onStop(app.appId)">Stop</button>
-        <button class="status-button btn btn-xs btn-info" (click)="onModify(app.appId)">Modify</button>
+        <button class="status-button btn btn-xs btn-success" (click)="onStart(app.appId, i)">Start</button>
+        <button class="status-button btn btn-xs btn-danger" (click)="onStop(app.appId, i)">Stop</button>
+        <button class="status-button btn btn-xs btn-info" (click)="onModify(app.appId, i)">Modify</button>
       </td>
     </tr>
     </tbody>

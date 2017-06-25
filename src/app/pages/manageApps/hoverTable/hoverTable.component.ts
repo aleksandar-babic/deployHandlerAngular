@@ -5,7 +5,14 @@ import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'hover-table',
-  templateUrl: './hoverTable.html'
+  templateUrl: './hoverTable.html',
+  styles:[`
+    td > input {
+      background-color: transparent;
+      border: 0;
+      color:white;
+    }
+  `]
 })
 export class HoverTable {
 
@@ -15,33 +22,31 @@ export class HoverTable {
     this.tableData = this.appsService.getAppsArray();
   }
 
-  onStart(appId){
+  onStart(appId,i){
+    this.toastrService.info('App is starting.','Give me a moment');
     this.appsService.startApp(appId)
       .subscribe(
         data => {
           this.toastrService.success('App ' + ' has been started.','Good job!');
-          console.log(data);
-          this.tableData = this.appsService.getAppsArray();
+          this.tableData[i].status = 'started';
         },
         error => {
           this.toastrService.warning(JSON.parse(error._body).message,'Oh no.');
         }
       );
   }
-  onStop(appId){
+  onStop(appId,i){
+    this.toastrService.info('App is stopping.','Give me a moment');
     this.appsService.stopApp(appId)
       .subscribe(
         data => {
           this.toastrService.success('App ' + ' has been stopped.','Good job!');
-          console.log(data);
-          this.tableData = this.appsService.getAppsArray();
+          this.tableData[i].status = 'stopped';
         },
         error => {
           this.toastrService.warning(JSON.parse(error._body).message,'Oh no.');
         }
       );
   }
-  onModify(appId){
-    console.log('okaay');
-  }
+  onModify(appId){}
 }
