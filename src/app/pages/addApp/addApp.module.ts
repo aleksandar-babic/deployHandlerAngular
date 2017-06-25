@@ -6,8 +6,6 @@ import { routing } from './addApp.routing';
 
 import {BasicForm} from "./addAppForm/basicForm.component";
 import {NgaModule} from "../../theme/nga.module";
-import {DefaultModal} from "./default-modal/default-modal.component";
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -19,14 +17,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   ],
   declarations: [
     AddAppComponent,
-    BasicForm,
-    DefaultModal
-  ],
-  entryComponents: [
-    DefaultModal
-  ],
-  providers: [
-    NgbModal
+    BasicForm
   ]
 })
 export class AddAppModule {}

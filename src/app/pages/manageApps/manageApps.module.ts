@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import {ManageAppsComponent} from "./manageApps.component";
 import {routing} from "./manageApps.routing";
+import {HoverTable} from "./hoverTable/hoverTable.component";
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import {routing} from "./manageApps.routing";
     routing
   ],
   declarations: [
-    ManageAppsComponent
+    ManageAppsComponent,
+    HoverTable
   ]
 })
 export class ManageAppsModule {}

@@ -11,8 +11,8 @@ import { PieChart } from './pieChart';
 import { PieChartService } from './pieChart/pieChart.service';
 import { Todo } from './todo';
 import { TodoService } from './todo/todo.service';
-import {SmartTablesService} from "../tables/components/appsTables/smartTables.service";
-import {SmartTables} from "../tables/components/appsTables/smartTables.component";
+import {SmartTablesService} from "./appsTable/appTable";
+import {AppsTable} from "./appsTable/appTable.component";
 
 @NgModule({
   imports: [
@@ -26,7 +26,7 @@ import {SmartTables} from "../tables/components/appsTables/smartTables.component
   declarations: [
     PieChart,
     Todo,
-    SmartTables,
+    AppsTable,
     Dashboard
   ],
   providers: [

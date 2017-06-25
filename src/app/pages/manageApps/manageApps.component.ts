@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'manageApps',
-  template: `<strong>Heres app list</strong>`,
+  templateUrl: './manageApps.html',
 })
 export class ManageAppsComponent {
   constructor() {}

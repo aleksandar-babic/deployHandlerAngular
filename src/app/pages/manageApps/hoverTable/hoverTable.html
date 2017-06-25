@@ -1,0 +1,26 @@
+<div class="horizontal-scroll">
+  <table class="table table-hover">
+    <thead>
+    <tr class="black-muted-bg">
+      <th>App</th>
+      <th>Entry point</th>
+      <th>Port</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let app of tableData" class="no-top-border">
+      <td><input type="text" disabled [(ngModel)]="app.name"></td>
+      <td>{{app.entryPoint}}</td>
+      <td>{{app.port}}</td>
+      <td><input type="text" disabled [(ngModel)]="app.status" [ngStyle]="{'color':(app.status=='stopped')?'#e85656':'#90b900'}"></td>
+      <td>
+        <button class="status-button btn btn-xs btn-success" (click)="onStart(app.appId)">Start</button>
+        <button class="status-button btn btn-xs btn-danger" (click)="onStop(app.appId)">Stop</button>
+        <button class="status-button btn btn-xs btn-info" (click)="onModify(app.appId)">Modify</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

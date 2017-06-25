@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 
-import { SmartTablesService } from './smartTables.service';
+import { SmartTablesService } from './appTable';
 import { LocalDataSource } from 'ng2-smart-table';
 import { ToastrService } from 'ngx-toastr';
-import {AppsService} from "../../../../theme/services/appsService/apps.service";
-import {App} from "../../../../theme/services/appsService/apps.model";
+import {AppsService} from "../../../theme/services/appsService/apps.service";
+import {App} from "../../../theme/services/appsService/apps.model";
 
 
 @Component({
-  selector: 'smart-tables',
-  templateUrl: './smartTables.html',
-  styleUrls: ['./smartTables.scss']
+  selector: 'app-table',
+  templateUrl: 'appTable.html',
+  styleUrls: ['appTable.scss']
 })
-export class SmartTables {
+export class AppsTable {
 
   query: string = '';
 

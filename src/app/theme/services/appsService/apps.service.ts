@@ -92,4 +92,32 @@ export class AppsService {
         return Observable.throw(error.json());
       });
   }
+
+  startApp(appId: string) {
+    const headers = new Headers({'Content-Type': 'application/json'});
+    const token = localStorage.getItem('token')
+      ? '?token=' + localStorage.getItem('token')
+      : '';
+    return this.http.post('http://deployhandler.com:3000/api/apps/' + appId + '/start' + token, '' , {headers: headers})
+      .map((response: Response) => {
+        response.json();
+      })
+      .catch((error: Response) => {
+        return Observable.throw(error);
+      });
+  }
+
+  stopApp(appId: string) {
+    const headers = new Headers({'Content-Type': 'application/json'});
+    const token = localStorage.getItem('token')
+      ? '?token=' + localStorage.getItem('token')
+      : '';
+    return this.http.post('http://deployhandler.com:3000/api/apps/' + appId + '/stop' + token, '' , {headers: headers})
+      .map((response: Response) => {
+        response.json();
+      })
+      .catch((error: Response) => {
+        return Observable.throw(error);
+      });
+  }
 }

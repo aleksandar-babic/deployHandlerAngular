@@ -45,6 +45,8 @@ export class BasicForm {
       .subscribe(
         data => {
           this.toastrService.success('App ' + app.name + ' has been added.','Good job!');
+          app.status = 'stopped';
+          this.appsService.getAppsArray().push(app);
           this.form.reset();
         },
         error => {
