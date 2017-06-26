@@ -1,7 +1,10 @@
 import {Component} from '@angular/core';
 import {AppsService} from "../../../theme/services/appsService/apps.service";
 import {ToastrService} from "ngx-toastr";
+import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 
+import {Modal} from "../modal/modal.component";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'hover-table',
@@ -18,7 +21,7 @@ export class HoverTable {
 
   tableData:Array<any>;
 
-  constructor(private appsService: AppsService, private toastrService: ToastrService) {
+  constructor(private appsService: AppsService, private toastrService: ToastrService, private modalService: NgbModal) {
     this.tableData = this.appsService.getAppsArray();
   }
 
@@ -48,5 +51,9 @@ export class HoverTable {
         }
       );
   }
-  onModify(appId){}
+  onModify(i){
+    const activeModal = this.modalService.open(Modal, {size: 'lg'});
+    activeModal.componentInstance.modalHeader = 'Modify ' + this.appsService.getAppsArray()[i].name;
+    activeModal.componentInstance.modalAppIndex = i;
+  }
 }

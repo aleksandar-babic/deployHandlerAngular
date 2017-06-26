@@ -1,0 +1,24 @@
+@import "../../../theme/sass/conf/conf";
+
+.modal-buttons .btn {
+  margin-right: 20px;
+}
+
+.modal-content {
+  color: $dropdown-text;
+}
+
+.form-control {
+  background: rgba(0,0,0,0.5);
+  box-shadow: -2px 5px 10px rgba(0,0,0,0.5);
+  -webkit-transition: all 0.3s; /* Safari */
+  transition: all 0.4s;
+}
+
+#deployDomain {
+  box-shadow: -2px 5px 10px rgba(0,0,0,0.5);
+}
+.input-group-addon-primary{
+  border-color: transparent;
+}
+

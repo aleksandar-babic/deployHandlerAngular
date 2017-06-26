@@ -8,6 +8,11 @@ import {App} from "../../../theme/services/appsService/apps.model";
 @Component({
   selector: 'basic-form',
   templateUrl: './basicForm.html',
+  styles:[`
+    .input-group-addon-primary{
+      border-color: transparent;
+    }
+  `]
 })
 export class BasicForm {
 

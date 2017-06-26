@@ -34,7 +34,7 @@ export class AppsService {
           result.user,
           result._id
         );
-        this.apps.push(app);
+        //this.apps.push(app);
         return app;
       })
       .catch((error: Response) => {
