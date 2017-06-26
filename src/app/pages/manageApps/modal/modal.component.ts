@@ -73,5 +73,18 @@ export class Modal implements OnInit {
         }
       );
   }
-  onDelete(){}
+  onDelete(){
+    if (window.confirm('Are you sure you want to delete?')) {
+      this.appsService.deleteApp(this.localApp)
+        .subscribe(
+          data => {
+            this.toastrService.success('App ' + this.localApp.name + ' has been Deleted.','Done!');
+            this.activeModal.close();
+          },
+          error => {
+            this.toastrService.warning(JSON.parse(error._body).message,'Oh no.');
+          }
+        );
+    }
+  }
 }
