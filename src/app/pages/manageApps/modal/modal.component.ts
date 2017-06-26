@@ -3,6 +3,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import {AppsService} from "../../../theme/services/appsService/apps.service";
 import {App} from "../../../theme/services/appsService/apps.model";
+import {PortValidator, EntryPointValidator} from "../../../theme/validators";
+
 
 @Component({
   selector: 'add-service-modal',
@@ -29,8 +31,9 @@ export class Modal implements OnInit {
   ngOnInit() {
     this.form = this.fb.group({
       'appName': ['', Validators.compose([])],
-      'appEntryPoint': ['', Validators.compose([])],
+      'appEntryPoint': ['', Validators.compose([EntryPointValidator.validate])],
       'appPort': ['', Validators.compose([
+        PortValidator.validate,
         Validators.minLength(3),
         Validators.maxLength(5),
       ])]
