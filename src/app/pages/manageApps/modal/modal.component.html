@@ -8,8 +8,9 @@
   <div class="modal-body">
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="form-group">
+          <label for="appName">App name</label>
           <div class="input-group" [ngClass]="{'has-error': (!appName.valid && appName.touched), 'has-success': (appName.valid && appName.touched)}">
-            <input type="text" class="form-control with-primary-addon" placeholder="App name" aria-describedby="appName" [formControl]="appName" value="{{localApp.name}}">
+            <input type="text" class="form-control with-primary-addon" id="appName" placeholder="App name" aria-describedby="appName" [formControl]="appName" value="{{localApp.name}}">
             <span class="input-group-addon input-group-addon-primary addon-right " id="deployDomain">.deployhandler.com</span>
           </div>
         </div>
@@ -23,7 +24,7 @@
                  [formControl]="appPort" value="{{localApp.port}}">
         </div>
 
-        <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Update app</button>
+        <button type="submit" class="btn btn-primary" >Update app</button>
       </form>
     <button class="btn btn-danger" (click)="onDelete()">Delete app</button>
   </div>

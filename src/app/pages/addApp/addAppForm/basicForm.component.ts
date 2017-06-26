@@ -2,9 +2,9 @@ import {Component} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import {ToastrService} from "ngx-toastr";
 import {AppsService} from "../../../theme/services/appsService/apps.service";
+import {PortValidator, EntryPointValidator} from "../../../theme/validators";
+
 import {App} from "../../../theme/services/appsService/apps.model";
-import {EntryPointValidator} from "../../../theme/validators/entryPoint.validator";
-import {PortValidator} from "../../../theme/validators/port.validator";
 
 
 @Component({

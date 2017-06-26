@@ -18,7 +18,11 @@
 #deployDomain {
   box-shadow: -2px 5px 10px rgba(0,0,0,0.5);
 }
+
 .input-group-addon-primary{
   border-color: transparent;
 }
 
+.form-group label {
+  color: black;
+}
