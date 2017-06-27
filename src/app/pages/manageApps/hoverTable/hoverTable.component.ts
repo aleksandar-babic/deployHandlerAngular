@@ -30,7 +30,7 @@ export class HoverTable {
     this.appsService.startApp(appId)
       .subscribe(
         data => {
-          this.toastrService.success('App ' + ' has been started.','Good job!');
+          this.toastrService.success('Now live on http:// ' + this.tableData[i].name +'.deployhandler.com','App has been started!');
           this.tableData[i].status = 'started';
         },
         error => {

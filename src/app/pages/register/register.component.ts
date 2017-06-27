@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
-import {EmailValidator, EqualPasswordsValidator} from '../../theme/validators';
+import {EmailValidator, EqualPasswordsValidator, UsernameValidator} from '../../theme/validators';
 
 @Component({
   selector: 'register',
@@ -10,7 +10,7 @@ import {EmailValidator, EqualPasswordsValidator} from '../../theme/validators';
 export class Register {
 
   public form:FormGroup;
-  public name:AbstractControl;
+  public userName:AbstractControl;
   public email:AbstractControl;
   public password:AbstractControl;
   public repeatPassword:AbstractControl;
@@ -21,15 +21,15 @@ export class Register {
   constructor(fb:FormBuilder) {
 
     this.form = fb.group({
-      'name': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      'userName': ['', Validators.compose([Validators.required, Validators.minLength(4), UsernameValidator.validate])],
       'email': ['', Validators.compose([Validators.required, EmailValidator.validate])],
       'passwords': fb.group({
-        'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
-        'repeatPassword': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
+        'password': ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+        'repeatPassword': ['', Validators.compose([Validators.required, Validators.minLength(6)])]
       }, {validator: EqualPasswordsValidator.validate('password', 'repeatPassword')})
     });
 
-    this.name = this.form.controls['name'];
+    this.userName = this.form.controls['userName'];
     this.email = this.form.controls['email'];
     this.passwords = <FormGroup> this.form.controls['passwords'];
     this.password = this.passwords.controls['password'];

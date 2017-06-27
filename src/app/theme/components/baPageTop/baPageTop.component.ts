@@ -40,6 +40,6 @@ export class BaPageTop {
 
   public onLogout(){
     this.authService.logout();
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/');
   }
 }
