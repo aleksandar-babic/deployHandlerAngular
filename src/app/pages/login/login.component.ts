@@ -28,21 +28,20 @@ export class Login {
     this.password = this.form.controls['password'];
   }
 
-  public onSubmit(values:Object):void {
+  public onSubmit(values:any):void {
     this.submitted = true;
     if (this.form.valid) {
-      const user = new User(this.form.value.username, this.form.value.password);
+      const user = new User(values.username, values.password);
       this.authService.signin(user)
         .subscribe(
           data => {
             localStorage.setItem('token', data.token);
             localStorage.setItem('userId', data.userId);
             this.router.navigateByUrl('/');
-            this.toastrService.info('I\'m glad to see you again!','Hi there, ' + this.form.value.username + '.');
+            this.toastrService.info('I\'m glad to see you again!','Hi there, ' + values.username + '.');
           },
           error =>{
-            //console.error(error)
-            this.toastrService.error('Please double check your username and password.','Error')
+            this.toastrService.error(error.message,'Error')
           }
         );
     }
