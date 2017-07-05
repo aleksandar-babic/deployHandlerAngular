@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Http, Headers, Response } from "@angular/http";
 import 'rxjs/Rx';
 import { Observable } from "rxjs";
+import { tokenNotExpired } from 'angular2-jwt';
 
 import { User } from "./user.model";
 
@@ -35,7 +36,11 @@ export class AuthService {
     localStorage.clear();
   }
 
+  isValidToken(){
+
+  }
+
   isLoggedIn() {
-    return localStorage.getItem('token') !== null;
+    return tokenNotExpired();
   }
 }
