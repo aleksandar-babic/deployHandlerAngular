@@ -120,4 +120,19 @@ export class AppsService {
         return Observable.throw(error);
       });
   }
+
+  installApp(appId: string){
+    const headers = new Headers({'Content-Type': 'application/json'});
+    const token = localStorage.getItem('token')
+      ? '?token=' + localStorage.getItem('token')
+      : '';
+    return this.http.post('http://deployhandler.com:3000/api/apps/' + appId + '/install' + token, '' , {headers: headers})
+      .map((response: Response) => {
+        return response.json();
+      })
+      .catch((error: Response) => {
+        return Observable.throw(error);
+      });
+
+  }
 }

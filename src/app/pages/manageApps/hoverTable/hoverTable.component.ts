@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {AppsService} from "../../../theme/services/appsService/apps.service";
 import {ToastrService} from "ngx-toastr";
-import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 
 import {Modal} from "../modal/modal.component";
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {ModalNpm} from "../modalNpm/modal.component";
 
 @Component({
   selector: 'hover-table',
@@ -15,10 +15,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
       border: 0;
       color:white;
     }
+    .status-button{
+      width: 70px;
+    }
   `]
 })
 export class HoverTable {
-
   tableData:Array<any>;
 
   constructor(private appsService: AppsService, private toastrService: ToastrService, private modalService: NgbModal) {
@@ -55,5 +57,29 @@ export class HoverTable {
     const activeModal = this.modalService.open(Modal, {size: 'lg'});
     activeModal.componentInstance.modalHeader = 'Modify ' + this.appsService.getAppsArray()[i].name;
     activeModal.componentInstance.modalAppIndex = i;
+  }
+
+  onNpmInstall(appId){
+    this.toastrService.info('NPM install is started.','Give me a moment to install dependencies. Modal will be opened with output');
+    const activeModal = this.modalService.open(ModalNpm, {size: 'lg'});
+    activeModal.componentInstance.modalContent = ['Command is still running..'];
+    this.appsService.installApp(appId)
+      .subscribe(
+        data => {
+          if(data.output != '') {
+            var outputArray = data.output.split('\n');
+            outputArray.unshift('Output of command : ');
+            activeModal.componentInstance.modalContent = outputArray;
+          }
+          else
+            activeModal.componentInstance.modalContent = ['NPM install output is empty. This probably means that all your dependencies are already installed.'];
+        },
+        error => {
+          this.toastrService.warning(JSON.parse(error._body).message,'Oh no.');
+          console.log(JSON.parse(error._body).obj);
+        }
+      );
+
+
   }
 }

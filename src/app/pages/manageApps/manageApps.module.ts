@@ -8,6 +8,7 @@ import {HoverTable} from "./hoverTable/hoverTable.component";
 import {Modal} from "./modal/modal.component";
 import {NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import {NgaModule} from "../../theme/nga.module";
+import {ModalNpm} from "./modalNpm/modal.component";
 
 @NgModule({
   imports: [
@@ -21,9 +22,11 @@ import {NgaModule} from "../../theme/nga.module";
   declarations: [
     ManageAppsComponent,
     HoverTable,
-    Modal
+    Modal,
+    ModalNpm
   ],entryComponents: [
-    Modal
+    Modal,
+    ModalNpm
   ]
 })
 export class ManageAppsModule {}
