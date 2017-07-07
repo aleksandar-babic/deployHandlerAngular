@@ -12,6 +12,9 @@ import {AppsService} from "../../theme/services/appsService/apps.service";
     .started, .started:visited, .started:hover, .started:active {
       color: rgb(144, 185, 0);
     }
+    .section-left{
+      padding-left: 12px;
+    }
   `]
 })
 export class AccountSettingsComponent {

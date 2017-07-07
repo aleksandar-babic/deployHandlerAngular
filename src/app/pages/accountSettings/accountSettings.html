@@ -3,6 +3,12 @@
     <ba-card title="Security settings" baCardClass="with-scroll">
       <form class="form-horizontal">
         <div class="form-group row">
+          <label for="inputcurrpassword" class="col-sm-2 form-control-label">Current password</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="inputcurrpassword" placeholder="Current password">
+          </div>
+        </div>
+        <div class="form-group row">
           <label for="inputpassword" class="col-sm-2 form-control-label">New password</label>
           <div class="col-sm-10">
             <input type="password" class="form-control" id="inputpassword" placeholder="New password">
@@ -37,6 +43,20 @@
         <ul class="blur">
           <li *ngFor="let app of this.apps"><a href="http://{{app.name}}.deployhandler.com" class="stopped" target="_blank" [ngClass]="{'started': app.status == 'started'}">{{app.name}}.deployhandler.com</a></li>
         </ul>
+      </div>
+    </ba-card>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-sm-6 col-lg-3">
+    <ba-card title="Other settings" baCardClass="with-scroll">
+      <div class="section-block upper-text pull-left section-left">
+        <p>Clear all your todos</p>
+        <button class="btn btn-outline-danger">Delete TODOs</button>
+      </div>
+      <div class="section-block upper-text pull-left section-left">
+        <p>Permanently DELETE account</p>
+        <button class="btn btn-danger">Delete Account</button>
       </div>
     </ba-card>
   </div>
