@@ -1,9 +1,25 @@
 import { Component } from '@angular/core';
 
+import {AppsService} from "../../theme/services/appsService/apps.service";
+
 @Component({
   selector: 'account-settings',
-  template: `<strong>My Acc settings</strong>`,
+  templateUrl: './accountSettings.html',
+  styles:[`
+    .stopped, .stopped:visited, .stopped:hover, .stopped:active {
+      color: rgb(232, 86, 86);
+    }
+    .started, .started:visited, .started:hover, .started:active {
+      color: rgb(144, 185, 0);
+    }
+  `]
 })
 export class AccountSettingsComponent {
-  constructor() {}
+
+  private apps;
+
+  constructor(private appsService: AppsService) {
+    this.apps  = this.appsService.getAppsArray();//.map(function (app) { return app.name; });
+  }
+
 }

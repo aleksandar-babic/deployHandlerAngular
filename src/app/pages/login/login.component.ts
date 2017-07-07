@@ -31,7 +31,7 @@ export class Login {
   public onSubmit(values:any):void {
     this.submitted = true;
     if (this.form.valid) {
-      const user = new User(values.username, values.password);
+      const user = new User(values.username.toLowerCase(), values.password);
       this.authService.signin(user)
         .subscribe(
           data => {

@@ -4,12 +4,14 @@ import { FormsModule } from '@angular/forms';
 
 import {routing} from "./accountSettings.routing";
 import {AccountSettingsComponent} from "./accountSettings.component";
+import {NgaModule} from "../../theme/nga.module";
 
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    NgaModule,
     routing
   ],
   declarations: [

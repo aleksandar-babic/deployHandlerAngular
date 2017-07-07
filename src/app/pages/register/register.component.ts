@@ -45,7 +45,7 @@ export class Register {
   public onSubmit(values: any):void {
     this.submitted = true;
     if (this.form.valid) {
-      const user = new User(values.userName, values.passwords.password, values.email);
+      const user = new User(values.userName.toLowerCase(), values.passwords.password, values.email);
       this.authService.signup(user).subscribe(data => {
         this.toastrService.success('Give me a moment to log you in.','Great, you are now registrated.');
         this.authService.signin(user).subscribe(dataLogin => {
