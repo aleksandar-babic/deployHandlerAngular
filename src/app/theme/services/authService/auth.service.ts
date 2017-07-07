@@ -30,6 +30,19 @@ export class AuthService {
       });
   }
 
+  changePassword(passwordGroup: Object){
+    const body = JSON.stringify(passwordGroup);
+    const headers = new Headers({'Content-Type': 'application/json'});
+    const token = localStorage.getItem('token')
+      ? '?token=' + localStorage.getItem('token')
+      : '';
+    return this.http.post('http://deployhandler.com:3000/api/users/changepw' + token, body, {headers: headers})
+      .map((response: Response) => response.json())
+      .catch((error: Response) => {
+        return Observable.throw(error);
+      });
+  }
+
   logout() {
     localStorage.clear();
   }

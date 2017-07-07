@@ -1,32 +1,33 @@
 <div class="row">
   <div class="col-md-6">
     <ba-card title="Security settings" baCardClass="with-scroll">
-      <form class="form-horizontal">
-        <div class="form-group row">
+      <form class="form-horizontal" [formGroup]="form" (ngSubmit)="onSubmitPw(form.value)">
+        <div class="form-group row" [ngClass]="{'has-error': (!currentPassword.valid && currentPassword.touched), 'has-success': (currentPassword.valid && currentPassword.touched)}">
           <label for="inputcurrpassword" class="col-sm-2 form-control-label">Current password</label>
           <div class="col-sm-10">
-            <input type="password" class="form-control" id="inputcurrpassword" placeholder="Current password">
+            <input type="password" class="form-control" [formControl]="currentPassword" id="inputcurrpassword" placeholder="Current password">
+            <span *ngIf="!currentPassword.valid && currentPassword.touched" class="help-block sub-little-text">Your current password is for sure at least 6 characters long.</span>
           </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group row" [ngClass]="{'has-error': (!password.valid && password.touched), 'has-success': (password.valid && password.touched)}">
           <label for="inputpassword" class="col-sm-2 form-control-label">New password</label>
           <div class="col-sm-10">
-            <input type="password" class="form-control" id="inputpassword" placeholder="New password">
+            <input type="password" class="form-control" [formControl]="password" id="inputpassword" placeholder="New password">
           </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group row" [ngClass]="{'has-error': ((!repeatPassword.valid && repeatPassword.touched) || (!passwords.valid && (password.touched || repeatPassword.touched))), 'has-success': (repeatPassword.valid && repeatPassword.touched)}">
           <label for="inputPassword2" class="col-sm-2 form-control-label">Verify password</label>
           <div class="col-sm-10">
-            <input type="password" class="form-control" id="inputPassword2" placeholder="Verify new password">
+            <input type="password" class="form-control" [formControl]="repeatPassword" id="inputPassword2" placeholder="Verify new password">
+            <span *ngIf="!passwords.valid && (password.touched || repeatPassword.touched)" class="help-block sub-little-text">New passwords are not valid (they must match and must have at least 6 characters).</span>
           </div>
         </div>
         <div class="form-group row">
           <div class="offset-sm-2 col-sm-10">
-            <button type="submit" class="btn btn-primary">Change password</button>
+            <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Change password</button>
           </div>
         </div>
       </form>
-
     </ba-card>
   </div>
   <div class="col-md-6">
@@ -41,12 +42,15 @@
       <h2>URLs for your Apps</h2>
       <div class="section-block upper-text">
         <ul class="blur">
-          <li *ngFor="let app of this.apps"><a href="http://{{app.name}}.deployhandler.com" class="stopped" target="_blank" [ngClass]="{'started': app.status == 'started'}">{{app.name}}.deployhandler.com</a></li>
+          <li *ngFor="let app of this.apps"><a href="http://{{app.name}}.deployhandler.com" class="stopped"
+                                               target="_blank" [ngClass]="{'started': app.status == 'started'}">{{app.name}}.deployhandler.com</a>
+          </li>
         </ul>
       </div>
     </ba-card>
   </div>
 </div>
+
 <div class="row">
   <div class="col-md-6 col-sm-6 col-lg-3">
     <ba-card title="Other settings" baCardClass="with-scroll">
