@@ -9,7 +9,7 @@ import { routing }       from './dashboard.routing';
 
 import { PieChart } from './pieChart';
 import { PieChartService } from './pieChart/pieChart.service';
-import { Todo } from './todo';
+import { TodoComponent } from './todo';
 import { TodoService } from './todo/todo.service';
 import {SmartTablesService} from "./appsTable/appTable";
 import {AppsTable} from "./appsTable/appTable.component";
@@ -25,7 +25,7 @@ import {AppsTable} from "./appsTable/appTable.component";
   ],
   declarations: [
     PieChart,
-    Todo,
+    TodoComponent,
     AppsTable,
     Dashboard
   ],

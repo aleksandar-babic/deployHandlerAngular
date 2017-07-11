@@ -2,43 +2,68 @@ import {Component} from '@angular/core';
 import {BaThemeConfigProvider} from '../../../theme';
 
 import {TodoService} from './todo.service';
-import {AppsService} from "../../../theme/services/appsService/apps.service";
+import {ToastrService} from "ngx-toastr";
+import {Todo} from "./todo.model";
 
 @Component({
   selector: 'todo',
   templateUrl: './todo.html',
   styleUrls: ['./todo.scss']
 })
-export class Todo {
+export class TodoComponent {
 
   public dashboardColors = this._baConfig.get().colors.dashboard;
 
   public todoList:Array<any>;
-  public newTodoText:string = '';
+  private newTodoMessage: string = '';
 
-  constructor(private _baConfig:BaThemeConfigProvider, private _todoService:TodoService, private appsService: AppsService) {
-    this.todoList = this._todoService.getTodoList();
-
+  constructor(private _baConfig:BaThemeConfigProvider, private _todoService:TodoService, private toastrService: ToastrService) {
+    this.todoList = this._todoService.getDummyTodoList();
+    this.getRealTodo();
     this.todoList.forEach((item) => {
       item.color = this._getRandomColor();
     });
   }
 
-  getNotDeleted() {
-    return this.todoList.filter((item:any) => {
-      return !item.deleted
-    })
+  getRealTodo(){
+    this._todoService.getTodos().subscribe(data => {
+      this.todoList = data;
+      this.todoList.forEach((item) => {
+        item.color = this._getRandomColor();
+      });
+    }, error => {
+        this.toastrService.warning('Error while loading Todos.', 'Oh no.');
+    });
   }
 
-  addToDoItem($event) {
+  onComplete(e,id){
+    this._todoService.setComplete(e.target.checked,id).subscribe(data =>{
+      //Will see if I want some implementation here
+    }, error => {
+      this.toastrService.warning('Error while changing Todo status.', 'Oh no.');
+    });
+  }
 
-    if (($event.which === 1 || $event.which === 13) && this.newTodoText.trim() != '') {
+  onDelete(i,todo){
+    this._todoService.deleteSingle(todo._id).subscribe(data=>{
+      this.todoList.splice(i,1);
+    },error=>{
+      this.toastrService.warning('Error while deleting Todo.', 'Oh no.');
+    });
+  }
 
-      this.todoList.unshift({
-        text: this.newTodoText,
-        color: this._getRandomColor(),
-      });
-      this.newTodoText = '';
+
+  addToDoItem(e) {
+    if ((e.which === 1 || e.which === 13) ) {
+      if (this.newTodoMessage != ''){
+        const todo = new Todo(this.newTodoMessage);
+        this._todoService.addTodo(todo).subscribe(data=>{
+          this.toastrService.success(data.message,'Great');
+          this.todoList.push(data.obj);
+        },error=>{
+          this.toastrService.warning('Error while adding Todo.', 'Oh no.');
+        });
+      }
     }
   }
 

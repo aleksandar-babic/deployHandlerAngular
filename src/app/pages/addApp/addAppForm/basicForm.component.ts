@@ -36,15 +36,11 @@ export class BasicForm {
         PortValidator.validate,
         Validators.minLength(3),
         Validators.maxLength(5),
-      ])],
-      'npm': ['', Validators.required],
-      'nginx': ['', Validators.required]
+      ])]
     });
     this.appName = this.form.controls['appName'];
     this.appEntryPoint = this.form.controls['appEntryPoint'];
     this.appPort = this.form.controls['appPort'];
-    this.npm = this.form.controls['npm'];
-    this.nginx = this.form.controls['nginx'];
   }
 
   onSubmit() {

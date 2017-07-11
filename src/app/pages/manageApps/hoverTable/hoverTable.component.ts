@@ -24,7 +24,9 @@ export class HoverTable {
   tableData:Array<any>;
 
   constructor(private appsService: AppsService, private toastrService: ToastrService, private modalService: NgbModal) {
-    this.tableData = this.appsService.getAppsArray();
+    this.appsService.getApps().subscribe((apps) => {
+      this.tableData = apps;
+    }, error => this.toastrService.warning('Error while getting list of your apps','Oh no.'));
   }
 
   onStart(appId,i){

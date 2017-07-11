@@ -33,7 +33,9 @@ export class AccountSettingsComponent {
   private apps;
 
   constructor(fb:FormBuilder, private toastrService: ToastrService,private authService: AuthService,private appsService: AppsService) {
-    this.apps  = this.appsService.getAppsArray();
+    this.appsService.getApps().subscribe((apps) => {
+      this.apps = apps;
+    }, error => this.toastrService.warning('Error while getting list of your app URLs','Oh no.'));
 
     this.form = fb.group({
       'currentPassword': ['', Validators.compose([Validators.required, Validators.minLength(6)])],
