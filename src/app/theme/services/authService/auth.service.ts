@@ -43,6 +43,17 @@ export class AuthService {
       });
   }
 
+  closeAccount(){
+    const token = localStorage.getItem('token')
+      ? '?token=' + localStorage.getItem('token')
+      : '';
+    return this.http.delete('http://deployhandler.com:3000/api/users/close-account' + token)
+      .map((response: Response) =>response.json())
+      .catch((error: Response) => {
+        return Observable.throw(error);
+      });
+  }
+
   logout() {
     localStorage.clear();
   }

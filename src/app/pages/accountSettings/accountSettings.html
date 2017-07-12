@@ -56,11 +56,11 @@
     <ba-card title="Other settings" baCardClass="with-scroll">
       <div class="section-block upper-text pull-left section-left">
         <p>Clear all your todos</p>
-        <button class="btn btn-outline-danger" (click)="onWipeTodos()">Delete TODOs</button>
+        <button class="btn btn-outline-danger" (click)="onWipeTodos()">Wipe TODOs</button>
       </div>
       <div class="section-block upper-text pull-left section-left">
         <p>Permanently DELETE account</p>
-        <button class="btn btn-danger">Delete Account</button>
+        <button class="btn btn-danger" (click)="onCloseAccount()">Delete Account</button>
       </div>
     </ba-card>
   </div>
