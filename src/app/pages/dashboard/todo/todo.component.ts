@@ -59,7 +59,9 @@ export class TodoComponent {
         const todo = new Todo(this.newTodoMessage);
         this._todoService.addTodo(todo).subscribe(data=>{
           this.toastrService.success(data.message,'Great');
+          data.obj.color = this._getRandomColor();
           this.todoList.push(data.obj);
+          this.newTodoMessage = '';
         },error=>{
           this.toastrService.warning('Error while adding Todo.', 'Oh no.');
         });

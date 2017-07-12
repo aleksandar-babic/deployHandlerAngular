@@ -6,6 +6,7 @@ import {EqualPasswordsValidator} from '../../theme/validators';
 import {AppsService} from "../../theme/services/appsService/apps.service";
 import {ToastrService} from "ngx-toastr";
 import {AuthService} from "../../theme/services/authService/auth.service";
+import {TodoService} from "../dashboard/todo/todo.service";
 
 @Component({
   selector: 'account-settings',
@@ -32,7 +33,7 @@ export class AccountSettingsComponent {
 
   private apps;
 
-  constructor(fb:FormBuilder, private toastrService: ToastrService,private authService: AuthService,private appsService: AppsService) {
+  constructor(fb:FormBuilder, private toastrService: ToastrService,private authService: AuthService,private appsService: AppsService,private todoService: TodoService) {
     this.appsService.getApps().subscribe((apps) => {
       this.apps = apps;
     }, error => this.toastrService.warning('Error while getting list of your app URLs','Oh no.'));
@@ -57,10 +58,17 @@ export class AccountSettingsComponent {
       this.authService.changePassword(passwordGroup).subscribe(data => {
         this.toastrService.success('Your password has been changed','Done');
       }, error => {
-        console.log(error);
         this.toastrService.error(JSON.parse(error._body).message,'Error');
       });
     }
+  }
+
+  public onWipeTodos(){
+    this.todoService.wipeTodos().subscribe(data=>{
+      this.toastrService.info('Todos are now wiped.','Success');
+    },error=>{
+      this.toastrService.error(JSON.parse(error._body).message,'Error');
+    });
   }
 
 }

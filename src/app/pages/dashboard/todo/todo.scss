@@ -6,6 +6,7 @@
     margin-bottom: 8px;
   }
 
+
   ul.todo-list {
     margin: 0;
     padding: 0;
@@ -26,11 +27,13 @@
         right: 12px;
         font-size: 32px;
         transition: color 0.2s;
-        color: rgba($input-border, 0.5);
+        color: white;
+        opacity: 0.4;
         visibility: hidden;
         line-height: 42px;
         &:hover {
-          color: $input-border;
+          color: white;
+          opacity: 1;
         }
       }
       &:hover {
@@ -157,7 +160,7 @@
         }
         i.remove-todo {
           color: white;
-          opacity: 0.4;
+          opacity: 1;
           &:hover {
             color: white;
             opacity: 0.95;

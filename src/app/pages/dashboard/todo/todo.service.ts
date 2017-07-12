@@ -74,4 +74,15 @@ export class TodoService {
       });
   }
 
+  wipeTodos(){
+    const token = localStorage.getItem('token')
+      ? '?token=' + localStorage.getItem('token')
+      : '';
+    return this.http.delete('http://deployhandler.com:3000/api/todos' + token)
+      .map((response: Response) =>response.json())
+      .catch((error: Response) => {
+        return Observable.throw(error);
+      });
+  }
+
 }

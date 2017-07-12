@@ -5,6 +5,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {routing} from "./accountSettings.routing";
 import {AccountSettingsComponent} from "./accountSettings.component";
 import {NgaModule} from "../../theme/nga.module";
+import {TodoService} from "../dashboard/todo/todo.service";
 
 
 @NgModule({
@@ -17,6 +18,9 @@ import {NgaModule} from "../../theme/nga.module";
   ],
   declarations: [
     AccountSettingsComponent
+  ],
+  providers: [
+    TodoService
   ]
 })
 export class AccountSettingsModule {}
