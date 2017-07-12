@@ -25,12 +25,7 @@ export const routes: Routes = [
       { path: 'apps/add', loadChildren: './addApp/addApp.module#AddAppModule' },
       { path: 'apps/manage', loadChildren: './manageApps/manageApps.module#ManageAppsModule' },
       { path: 'settings', loadChildren: './accountSettings/accountSettings.module#AccountSettingsModule' },
-      { path: 'editors', loadChildren: './editors/editors.module#EditorsModule' },
-      { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
-      { path: 'ui', loadChildren: './ui/ui.module#UiModule' },
-      { path: 'forms', loadChildren: './forms/forms.module#FormsModule' },
-      { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
-      { path: 'maps', loadChildren: './maps/maps.module#MapsModule' }
+      { path: 'help', loadChildren: './gettingStarted/gettingStarted.module#GettingStartedModule' }
     ]
   }
 ];
