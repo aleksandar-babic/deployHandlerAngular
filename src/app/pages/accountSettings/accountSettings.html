@@ -42,7 +42,7 @@
       <h2>URLs for your Apps</h2>
       <div class="section-block upper-text">
         <ul class="blur">
-          <li *ngFor="let app of this.apps"><a href="http://{{app.name}}.deployhandler.com" class="stopped"
+          <li *ngFor="let app of apps"><a href="http://{{app.name}}.deployhandler.com" class="stopped"
                                                target="_blank" [ngClass]="{'started': app.status == 'started'}">{{app.name}}.deployhandler.com</a>
           </li>
         </ul>

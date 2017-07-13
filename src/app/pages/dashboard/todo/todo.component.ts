@@ -15,7 +15,7 @@ export class TodoComponent {
   public dashboardColors = this._baConfig.get().colors.dashboard;
 
   public todoList:Array<any>;
-  private newTodoMessage: string = '';
+  public newTodoMessage: string = '';
 
   constructor(private _baConfig:BaThemeConfigProvider, private _todoService:TodoService, private toastrService: ToastrService) {
     this.todoList = this._todoService.getDummyTodoList();

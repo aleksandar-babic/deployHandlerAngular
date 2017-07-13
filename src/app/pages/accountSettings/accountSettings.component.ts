@@ -32,7 +32,7 @@ export class AccountSettingsComponent {
   public repeatPassword:AbstractControl;
   public passwords:FormGroup;
 
-  private apps;
+  public apps;
 
   constructor(fb:FormBuilder, private toastrService: ToastrService,private authService: AuthService,private appsService: AppsService,private todoService: TodoService, private router: Router) {
     this.appsService.getApps().subscribe((apps) => {
