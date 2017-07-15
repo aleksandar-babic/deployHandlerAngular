@@ -1,4 +1,5 @@
 import { NgModule }      from '@angular/core';
+import { NgaModule } from '../../theme/nga.module';
 import { CommonModule }  from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -9,6 +10,7 @@ import { routing } from './gettingStarted.routing';
   imports: [
     CommonModule,
     FormsModule,
+    NgaModule,
     routing
   ],
   declarations: [

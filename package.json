@@ -1,7 +1,7 @@
 {
   "name": "deploy-handler-ng",
   "version": "1.0.0",
-  "description": "Angular frontend for DeployHandler.js",
+  "description": "Angular 4 frontend for DeployHandler.js",
   "author": "Aleksandar Babic <alekski64@icloud.com>",
   "homepage": "https://aleksandar.alfa-ing.com",
   "repository": {

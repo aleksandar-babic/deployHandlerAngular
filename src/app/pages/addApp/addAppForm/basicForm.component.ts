@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import {ToastrService} from "ngx-toastr";
 import {AppsService} from "../../../theme/services/appsService/apps.service";
-import {PortValidator, EntryPointValidator} from "../../../theme/validators";
+import {PortValidator, EntryPointValidator,AppNameValidator} from "../../../theme/validators";
 
 import {App} from "../../../theme/services/appsService/apps.model";
 
@@ -29,7 +29,7 @@ export class BasicForm {
 
   constructor(fb:FormBuilder,private toastrService: ToastrService, private appsService: AppsService) {
     this.form = fb.group({
-      'appName': ['', Validators.compose([Validators.required])],
+      'appName': ['', Validators.compose([Validators.required,AppNameValidator.validate])],
       'appEntryPoint': ['', Validators.compose([Validators.required,EntryPointValidator.validate])],
       'appPort': ['', Validators.compose([
         Validators.required,

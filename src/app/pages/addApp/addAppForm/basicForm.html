@@ -1,18 +1,18 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <div class="input-group" [ngClass]="{'has-error': (!appName.valid && appName.touched), 'has-success': (appName.valid && appName.touched)}">
-      <input type="text" class="form-control with-primary-addon" placeholder="App name" aria-describedby="appName" [formControl]="appName">
+      <input type="text" class="form-control with-primary-addon" placeholder="App name" aria-describedby="appName" [formControl]="appName" autocomplete="off" spellcheck="false">
       <span class="input-group-addon input-group-addon-primary addon-right" id="appName">.deployhandler.com</span>
     </div>
   </div>
   <div class="form-group" [ngClass]="{'has-error': (!appPort.valid && appPort.touched) , 'has-success': (appPort.valid && appPort.touched)}">
     <label for="appPort">Port number</label>
       <input type="text" class="form-control" id="appPort" name="appPort" placeholder="Port your app is using"
-             [formControl]="appPort">
+             [formControl]="appPort" autocomplete="off" spellcheck="false">
   </div>
   <div class="form-group" [ngClass]="{'has-error': (!appEntryPoint.valid && appEntryPoint.touched), 'has-success': (appEntryPoint.valid && appEntryPoint.touched)}">
     <label for="appEntryPoint">Entry point</label>
-    <input type="text" class="form-control" id="appEntryPoint" name="appEntryPoint" placeholder="Example: server.js" [formControl]="appEntryPoint">
+    <input type="text" class="form-control" id="appEntryPoint" name="appEntryPoint" placeholder="Example: server.js" [formControl]="appEntryPoint" autocomplete="off" spellcheck="false">
   </div>
   <div class="appOptions">
     <div class="form-group">

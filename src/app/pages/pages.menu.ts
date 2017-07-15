@@ -68,7 +68,7 @@ export const PAGES_MENU = [
             icon: 'ion-help',
             selected: false,
             expanded: false,
-            order: 200
+            order: 300
           }
         }
       }
