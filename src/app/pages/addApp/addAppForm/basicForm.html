@@ -7,8 +7,7 @@
   </div>
   <div class="form-group" [ngClass]="{'has-error': (!appPort.valid && appPort.touched) , 'has-success': (appPort.valid && appPort.touched)}">
     <label for="appPort">Port number</label>
-      <input type="text" class="form-control" id="appPort" name="appPort" placeholder="Port your app is using"
-             [formControl]="appPort" autocomplete="off" spellcheck="false">
+      <input type="text" class="form-control" id="appPort" name="appPort" placeholder="Port your app is using" [formControl]="appPort" autocomplete="off" spellcheck="false" [(ngModel)]="portTmp">
   </div>
   <div class="form-group" [ngClass]="{'has-error': (!appEntryPoint.valid && appEntryPoint.touched), 'has-success': (appEntryPoint.valid && appEntryPoint.touched)}">
     <label for="appEntryPoint">Entry point</label>
@@ -16,7 +15,7 @@
   </div>
   <div class="appOptions">
     <div class="form-group">
-      <ba-checkbox [(ngModel)]="isNpm"[label]="'Start by NPM command'" name="npm" [formControl]="npm" ngDefaultControl [disabled]="true"></ba-checkbox>
+      <ba-checkbox [(ngModel)]="isNpm"[label]="'Start by NPM command'" name="npm" [disabled]="true" [ngModelOptions]="{standalone: true}"></ba-checkbox>
       <ba-checkbox [(ngModel)]="isNginx" [label]="'Use NGINX reverse proxy'" ngDefaultControl [disabled]="true" [ngModelOptions]="{standalone: true}"></ba-checkbox>
     </div>
   </div>

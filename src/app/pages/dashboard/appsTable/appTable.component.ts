@@ -85,6 +85,7 @@ export class AppsTable {
         );
   }
   onEditConfirm(event):void {
+    console.log(event.newData);
     this.appsService.editApp(event.newData)
       .subscribe(
         data => {

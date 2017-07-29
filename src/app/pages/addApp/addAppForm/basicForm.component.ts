@@ -24,7 +24,7 @@ export class BasicForm {
   public appPort:AbstractControl;
   public npm:AbstractControl;
   public nginx:AbstractControl;
-  isNpm: boolean = true;
+  isNpm: boolean = false;
   isNginx: boolean = true;
 
   constructor(fb:FormBuilder,private toastrService: ToastrService, private appsService: AppsService) {
@@ -43,6 +43,7 @@ export class BasicForm {
     this.appPort = this.form.controls['appPort'];
   }
 
+
   onSubmit() {
     const app = new App(this.form.value.appName,this.form.value.appEntryPoint,this.form.value.appPort);
     this.appsService.addApp(app)
@@ -51,12 +52,18 @@ export class BasicForm {
           this.toastrService.success('App ' + app.name + ' has been added.','Good job!');
           app.status = 'stopped';
           this.appsService.getAppsArray().push(app);
+          this.form.value.appPort = "";
           this.form.reset();
         },
         error => {
           this.toastrService.warning(JSON.parse(error._body).message,'Oh no.');
         }
       );
+    this.form.reset({
+      appName: '',
+      appEntryPoint: '',
+      appPort: ''
+    });
   }
 
 }
