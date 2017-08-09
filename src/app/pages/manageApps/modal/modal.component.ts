@@ -25,7 +25,7 @@ export class Modal implements OnInit {
   public appPort:AbstractControl;
 
   public localApp: App;
-  public localNpmState: boolean;
+  public localNpmState: boolean = false;
 
   constructor(private fb:FormBuilder,private activeModal: NgbActiveModal, private appsService: AppsService, private toastrService: ToastrService) {}
 
@@ -45,7 +45,6 @@ export class Modal implements OnInit {
 
     this.localApp = this.appsService.getAppsArray()[this.modalAppIndex];
     this.localNpmState = this.localApp.entryPoint.indexOf('npm.') !== -1;
-    console.log(this.localNpmState);
 
   }
 

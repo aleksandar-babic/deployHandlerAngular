@@ -1,11 +1,12 @@
-<div class="modal-content">
-  <div class="modal-header">
+<ba-card title="Helper" baCardClass="with-scroll lists-widget">
+<!--<div class="modal-content">-->
+  <!--<div class="modal-header">
     <h4 class="modal-title">{{modalHeader}}</h4>
     <button class="close" aria-label="Close" (click)="closeModal()">
       <span aria-hidden="true">&times;</span>
     </button>
-  </div>
-  <div class="modal-body">
+  </div>-->
+<!--  <div class="modal-body">-->
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="appName">App name</label>
@@ -15,9 +16,11 @@
           </div>
         </div>
         <ba-checkbox [(ngModel)]="localNpmState" [label]="'Start by NPM command'" name="npm" [ngModelOptions]="{standalone: true}"></ba-checkbox>
+
         <div class="form-group" [ngClass]="{'has-error': (!appEntryPoint.valid && appEntryPoint.touched), 'has-success': (appEntryPoint.valid && appEntryPoint.touched)}">
-          <label for="appEntryPoint">Entry point</label>
-          <input type="text" class="form-control" id="appEntryPoint" name="appEntryPoint" placeholder="Example: server.js" [formControl]="appEntryPoint" value="{{localApp.entryPoint}}">
+          <label for="appEntryPoint">{{(!localNpmState)?'Entry point':'NPM Command'}}</label>
+          <input type="text" class="form-control" *ngIf="!localNpmState" id="appEntryPoint" name="appEntryPoint" placeholder="Example: server.js" [formControl]="appEntryPoint" value="{{(localApp.entryPoint.indexOf('npm.') !== -1)?'':localApp.entryPoint}}">
+          <input type="text" class="form-control" *ngIf="localNpmState" id="appEntryPoint" name="appEntryPoint" placeholder="Example: start" [formControl]="appEntryPoint" value="{{(localApp.entryPoint.indexOf('npm.') !== -1)?localApp.entryPoint.split('.')[1]:''}}">
         </div>
         <div class="form-group" [ngClass]="{'has-error': (!appPort.valid && appPort.touched) , 'has-success': (appPort.valid && appPort.touched)}">
           <label for="appPort">Port number</label>
@@ -28,8 +31,9 @@
         <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Update app</button>
       </form>
     <button class="btn btn-danger" (click)="onDelete()">Delete app</button>
-  </div>
-  <div class="modal-footer">
+<!--  </div>-->
+  <!--<div class="modal-footer">
     <button class="btn btn-primary confirm-btn" (click)="closeModal()">Close</button>
-  </div>
-</div>
+  </div>-->
+<!--</div>-->
+</ba-card>

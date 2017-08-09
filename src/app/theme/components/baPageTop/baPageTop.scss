@@ -17,6 +17,23 @@
     }
   }
 
+  .dropdown-menu {
+    top: 135%;
+    left: -100px;
+  }
+
+  .top-dropdown-menu.profile-dropdown a i {
+    margin-right: 10px;
+  }
+
+  .top-dropdown-menu.profile-dropdown a {
+    text-align: left;
+    border: none;
+    text-decoration: none;
+    color: #7d7d7d;
+    padding: 4px 16px 4px 20px;
+  }
+
   .blur {
     .page-top.scrolled {
       background-color: rgba(black, 0.85)
