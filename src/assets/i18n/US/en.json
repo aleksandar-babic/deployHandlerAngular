@@ -67,8 +67,8 @@
     "todo_list": "To Do List",
     "app_list": "Quick look at your apps",
     "calendar": "Calendar",
-    "cpu_usage": "Server CPU usage",
-    "ram_usage": "Server RAM usage",
+    "cpu_usage": "Server CPU",
+    "ram_usage": "Server RAM",
     "user_apps": "Your apps",
     "user_started_apps": "Your started apps",
     "popular_app": {
@@ -84,18 +84,6 @@
     "traffic_chart": {
       "view_total": "Views Total"
     }
-  },
-  "tree_view": {
-    "title": "basic",
-    "programming": "Programming languages by programming paradigm",
-    "oop": "Object-oriented programming",
-    "java": "Java",
-    "c_plus_plus": "C++",
-    "c_sharp": "C#",
-    "prototype": "Prototype-based programming",
-    "java_script": "JavaScript",
-    "coffee_script": "CoffeeScript",
-    "lua": "Lua"
   },
   "chart": {
     "lines": "Lines",
