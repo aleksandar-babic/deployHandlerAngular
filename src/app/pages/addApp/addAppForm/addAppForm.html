@@ -10,9 +10,10 @@
       <input type="text" class="form-control" id="appPort" name="appPort" placeholder="Port your app is using" [formControl]="appPort" autocomplete="off" spellcheck="false" [(ngModel)]="portTmp">
   </div>
   <div class="form-group" *ngIf="isNpm" [ngClass]="{'has-error': (!appNpmStart.valid && appNpmStart.touched), 'has-success': (appNpmStart.valid && appNpmStart.touched)}">
-    <label for="appEntryPoint">NPM start command</label>
+    <label for="appNpmStart">NPM start command</label>
     <input type="text" class="form-control" id="appNpmStart" name="appNpmStart" placeholder="Example: start" [formControl]="appNpmStart" autocomplete="off" spellcheck="false">
   </div>
+
   <div class="form-group" *ngIf="!isNpm" [ngClass]="{'has-error': (!appEntryPoint.valid && appEntryPoint.touched), 'has-success': (appEntryPoint.valid && appEntryPoint.touched)}">
     <label for="appEntryPoint">Entry point</label>
     <input type="text" class="form-control" id="appEntryPoint" name="appEntryPoint" placeholder="Example: server.js" [formControl]="appEntryPoint" autocomplete="off" spellcheck="false">
@@ -20,7 +21,7 @@
 
   <div class="appOptions">
     <div class="form-group">
-      <ba-checkbox [(ngModel)]="isNpm" [label]="'Start by NPM command'" name="npm" [ngModelOptions]="{standalone: true}"></ba-checkbox>
+      <ba-checkbox [(ngModel)]="isNpm" [label]="'Start by NPM command'" name="npm" [ngModelOptions]="{standalone: true}" (click)="setValidationForNpm()"></ba-checkbox>
       <ba-checkbox [(ngModel)]="isNginx" [label]="'Use NGINX reverse proxy'" ngDefaultControl [disabled]="true" [ngModelOptions]="{standalone: true}"></ba-checkbox>
     </div>
   </div>

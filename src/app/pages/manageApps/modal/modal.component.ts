@@ -3,7 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import {AppsService} from "../../../theme/services/appsService/apps.service";
 import {App} from "../../../theme/services/appsService/apps.model";
-import {PortValidator, EntryPointValidator} from "../../../theme/validators";
+import {PortValidator, EntryPointValidator, AppNameValidator} from "../../../theme/validators";
 import {ToastrService} from "ngx-toastr";
 
 
@@ -12,7 +12,7 @@ import {ToastrService} from "ngx-toastr";
   styleUrls: [('./modal.component.scss')],
   templateUrl: 'modal.component.html'
 })
-
+//TODO Improve validation
 export class Modal implements OnInit {
 
   modalAppIndex: number;
@@ -25,13 +25,13 @@ export class Modal implements OnInit {
   public appPort:AbstractControl;
 
   public localApp: App;
-
+  public localNpmState: boolean;
 
   constructor(private fb:FormBuilder,private activeModal: NgbActiveModal, private appsService: AppsService, private toastrService: ToastrService) {}
 
   ngOnInit() {
     this.form = this.fb.group({
-      'appName': ['', Validators.compose([])],
+      'appName': ['', Validators.compose([AppNameValidator.validate])],
       'appEntryPoint': ['', Validators.compose([EntryPointValidator.validate])],
       'appPort': ['', Validators.compose([
         PortValidator.validate,
@@ -44,12 +44,16 @@ export class Modal implements OnInit {
     this.appPort = this.form.controls['appPort'];
 
     this.localApp = this.appsService.getAppsArray()[this.modalAppIndex];
+    this.localNpmState = this.localApp.entryPoint.indexOf('npm.') !== -1;
+    console.log(this.localNpmState);
+
   }
 
   closeModal() {
     this.activeModal.close();
   }
 
+  //TODO Add NPM feature when editing app
   onSubmit(){
     if(this.form.value.appName)
       this.localApp.name = this.form.value.appName;

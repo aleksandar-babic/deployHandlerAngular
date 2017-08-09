@@ -1,1 +1,1 @@
-export * from './basicForm.component';
+export * from './addAppForm.component';

@@ -26,16 +26,17 @@ export class AppsService {
     return this.http.post('http://deployhandler.com:3000/api/apps' + token, body, {headers: headers})
       .map((response: Response) => {
         const result = response.json();
-        const app = new App(
+        const appRes = new App(
           result.name,
           result.entryPoint,
           result.port,
           result.status,
           result.user,
-          result._id
+          result._id,
+          app.isNpm
         );
         //this.apps.push(app);
-        return app;
+        return appRes;
       })
       .catch((error: Response) => {
         return Observable.throw(error);

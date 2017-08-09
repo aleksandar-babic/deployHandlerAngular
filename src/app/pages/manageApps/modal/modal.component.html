@@ -14,6 +14,7 @@
             <span class="input-group-addon input-group-addon-primary addon-right " id="deployDomain">.deployhandler.com</span>
           </div>
         </div>
+        <ba-checkbox [(ngModel)]="localNpmState" [label]="'Start by NPM command'" name="npm" [ngModelOptions]="{standalone: true}"></ba-checkbox>
         <div class="form-group" [ngClass]="{'has-error': (!appEntryPoint.valid && appEntryPoint.touched), 'has-success': (appEntryPoint.valid && appEntryPoint.touched)}">
           <label for="appEntryPoint">Entry point</label>
           <input type="text" class="form-control" id="appEntryPoint" name="appEntryPoint" placeholder="Example: server.js" [formControl]="appEntryPoint" value="{{localApp.entryPoint}}">
@@ -24,7 +25,7 @@
                  [formControl]="appPort" value="{{localApp.port}}">
         </div>
 
-        <button type="submit" class="btn btn-primary" >Update app</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Update app</button>
       </form>
     <button class="btn btn-danger" (click)="onDelete()">Delete app</button>
   </div>

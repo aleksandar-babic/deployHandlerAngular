@@ -1,4 +1,4 @@
-import {Component, DoCheck} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import {ToastrService} from "ngx-toastr";
 import {AppsService} from "../../../theme/services/appsService/apps.service";
@@ -9,14 +9,14 @@ import {App} from "../../../theme/services/appsService/apps.model";
 
 @Component({
   selector: 'basic-form',
-  templateUrl: './basicForm.html',
+  templateUrl: 'addAppForm.html',
   styles:[`
     .input-group-addon-primary{
       border-color: transparent;
     }
   `]
 })
-export class BasicForm implements DoCheck{
+export class AddAppForm{
 
   public form:FormGroup;
   public appName:AbstractControl;
@@ -38,28 +38,40 @@ export class BasicForm implements DoCheck{
         Validators.minLength(3),
         Validators.maxLength(5),
       ])],
+      //TODO Write NPM command validator
       'appNpmStart':['', Validators.compose([Validators.required])]
     });
     this.appNpmStart = this.form.controls['appNpmStart'];
     this.appName = this.form.controls['appName'];
     this.appEntryPoint = this.form.controls['appEntryPoint'];
     this.appPort = this.form.controls['appPort'];
+    this.appNpmStart.disable();
   }
 
-  ngDoCheck(){
-    return this.isNpm;
+  setValidationForNpm(){
+    if(!this.isNpm) {
+      this.appEntryPoint.disable();
+      this.appNpmStart.enable();
+    }else{
+      this.appEntryPoint.enable();
+      this.appNpmStart.disable();
+    }
   }
 
   onSubmit() {
-    const app = new App(this.form.value.appName,this.form.value.appEntryPoint,this.form.value.appPort);
+    let app;
+    if(!this.isNpm) {
+      app = new App(this.form.value.appName, this.form.value.appEntryPoint, this.form.value.appPort);
+    }
+    else{
+      app = new App(this.form.value.appName, this.form.value.appNpmStart, this.form.value.appPort,'','','','true');
+    }
     this.appsService.addApp(app)
       .subscribe(
         data => {
           this.toastrService.success('App ' + app.name + ' has been added.','Good job!');
           app.status = 'stopped';
-          this.appsService.getAppsArray().push(app);
-          this.form.value.appPort = "";
-          this.form.reset();
+          this.appsService.getAppsArray().push(data);
         },
         error => {
           this.toastrService.warning(JSON.parse(error._body).message,'Oh no.');
@@ -68,7 +80,8 @@ export class BasicForm implements DoCheck{
     this.form.reset({
       appName: '',
       appEntryPoint: '',
-      appPort: ''
+      appPort: '',
+      appNpmStart: ''
     });
   }
 

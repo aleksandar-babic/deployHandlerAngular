@@ -4,7 +4,7 @@ import { FormsModule as AngularFormsModule, ReactiveFormsModule } from '@angular
 import { AddAppComponent } from './addApp.component';
 import { routing } from './addApp.routing';
 
-import {BasicForm} from "./addAppForm/basicForm.component";
+import {AddAppForm} from "./addAppForm/addAppForm.component";
 import {NgaModule} from "../../theme/nga.module";
 
 @NgModule({
@@ -17,7 +17,7 @@ import {NgaModule} from "../../theme/nga.module";
   ],
   declarations: [
     AddAppComponent,
-    BasicForm
+    AddAppForm
   ]
 })
 export class AddAppModule {}

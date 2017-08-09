@@ -4,6 +4,7 @@ export class App {
               public port: number,
               public status?: string,
               public userId?: string,
-              public appId?: string
+              public appId?: string,
+              public isNpm?: string
   ) {}
 }
