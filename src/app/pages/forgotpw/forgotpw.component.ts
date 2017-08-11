@@ -5,32 +5,46 @@ import { ToastrService } from 'ngx-toastr';
 
 import {User} from "../../theme/services/authService/user.model";
 import {AuthService} from "../../theme/services/authService/auth.service";
+import {EmailValidator} from "../../theme/validators/email.validator";
 
 @Component({
-  selector: 'login',
-  templateUrl: './login.html',
-  styleUrls: ['./login.scss']
+  selector: 'forgotpw',
+  templateUrl: './forgotpw.html',
+  styleUrls: ['./forgotpw.scss']
 })
-export class Login {
+export class ForgotPw {
 
   public form:FormGroup;
   public username:AbstractControl;
-  public password:AbstractControl;
+  public email:AbstractControl;
   public submitted:boolean = false;
 
   constructor(fb:FormBuilder, private authService: AuthService, private router: Router,private toastrService: ToastrService) {
     this.form = fb.group({
-      'username': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
-      'password': ['', Validators.compose([Validators.required, Validators.minLength(6)])]
+      'username': ['', [this.checkUsername]],
+      'email': ['', [this.checkEmail]]
     });
 
     this.username = this.form.controls['username'];
-    this.password = this.form.controls['password'];
+    this.email = this.form.controls['email'];
+  }
+
+  //TODO Work on these validations, same problem as with issues #16902 and #16276 on Angular github
+  checkUsername(control: AbstractControl){
+    if(control.dirty && control.value !== '') {
+      control.setValidators([Validators.minLength(4)]);
+    }
+  }
+
+  checkEmail(control: AbstractControl){
+    if(control.dirty && control.value !== '') {
+      control.setValidators([EmailValidator.validate]);
+    }
   }
 
   public onSubmit(values:any):void {
     this.submitted = true;
-    if (this.form.valid) {
+    /*if (this.form.valid) {
       const user = new User(values.username.toLowerCase(), values.password);
       this.authService.signin(user)
         .subscribe(
@@ -44,7 +58,7 @@ export class Login {
             this.toastrService.error(error.message,'Error')
           }
         );
-    }
+    }*/
   }
 
   ngOnInit(){

@@ -6,11 +6,17 @@
     "username": "Username",
     "password": "Password",
     "sign_in": "Sign in",
-    "forgot_password": "Forgot password?",
-    "sign_from_app_text": "or Sign in with one click",
-    "share_on_facebook": "Share on Facebook",
-    "share_on_twitter": "Share on Twitter",
-    "share_on_google_plus": "Share on Google Plus"
+    "forgot_password": "Forgot password?"
+  },
+  "forgotpw": {
+    "title": "Forgot your password?",
+    "login_link": "Let me try again, get me back to login!",
+    "info_text":"Enter either your username or email, whatever you remember.",
+    "send_email":"Reset password",
+    "email": "Email",
+    "username": "Username",
+    "sign_in": "Sign in",
+    "register": "I'm new user"
   },
   "general": {
     "author": "Aleksandar Babic",

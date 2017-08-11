@@ -1,0 +1,41 @@
+<div class="auth-main">
+  <div class="auth-block">
+    <h1 translate>{{'forgotpw.title'}}</h1>
+    <a routerLink="/login" class="auth-link" translate>{{'forgotpw.login_link'}}</a>
+    <p translate>{{'forgotpw.info_text'}}</p>
+    <br/>
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form-horizontal">
+      <div class="form-group row"
+           [ngClass]="{'has-error': (!username.valid && username.touched), 'has-success': (username.valid && username.touched)}">
+        <label for="inputEmail3" class="col-sm-2 control-label" translate>{{'forgotpw.username'}}</label>
+        <div class="col-sm-10">
+          <input [formControl]="username" type="text" class="form-control" id="inputUsername3"
+                 placeholder="{{'forgotpw.username' | translate}}">
+          <span *ngIf="!username.valid && username.touched"
+                class="help-block sub-little-text">Username must be at least 4 characters long.</span>
+        </div>
+      </div>
+
+      <div class="form-group row"
+           [ngClass]="{'has-error': (!email.valid && email.touched), 'has-success': (email.valid && email.touched)}">
+        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+
+        <div class="col-sm-10">
+          <input [formControl]="email" type="email" class="form-control" id="inputEmail3" placeholder="Email">
+          <span *ngIf="!email.valid && email.touched"
+                class="help-block sub-little-text">E-mail address is not valid.</span>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="offset-sm-2 col-sm-10">
+          <button [disabled]="!form.valid" type="submit" class="btn btn-default btn-auth" translate>
+            {{'forgotpw.send_email'}}
+          </button>
+          <a routerLink="/register" class="forgot-pass" translate>{{'forgotpw.register'}}</a>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

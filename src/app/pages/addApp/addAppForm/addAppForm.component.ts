@@ -38,7 +38,6 @@ export class AddAppForm{
         Validators.minLength(3),
         Validators.maxLength(5),
       ])],
-      //TODO Write NPM command validator
       'appNpmStart':['', Validators.compose([Validators.required])]
     });
     this.appNpmStart = this.form.controls['appNpmStart'];

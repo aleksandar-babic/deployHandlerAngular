@@ -16,6 +16,10 @@ export const routes: Routes = [
     loadChildren: 'app/pages/register/register.module#RegisterModule'
   },
   {
+    path: 'forgotpw',
+    loadChildren: 'app/pages/forgotpw/forgotpw.module#ForgotPwModule'
+  },
+  {
     path: '',
     component: Pages,
     canActivate: [AuthGuard],
@@ -25,8 +29,7 @@ export const routes: Routes = [
       { path: 'apps/add', loadChildren: './addApp/addApp.module#AddAppModule' },
       { path: 'apps/manage', loadChildren: './manageApps/manageApps.module#ManageAppsModule' },
       { path: 'settings', loadChildren: './accountSettings/accountSettings.module#AccountSettingsModule' },
-      { path: 'help', loadChildren: './gettingStarted/gettingStarted.module#GettingStartedModule' },
-      { path: 'ui', loadChildren: './ui/ui.module#UiModule' }
+      { path: 'help', loadChildren: './gettingStarted/gettingStarted.module#GettingStartedModule' }
     ]
   }
 ];

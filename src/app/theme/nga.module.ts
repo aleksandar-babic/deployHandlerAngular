@@ -41,7 +41,7 @@ import {
   BaProfilePicturePipe
 } from './pipes';
 
-//TODO Add new services
+
 import {
   BaImageLoaderService,
   BaMenuService,
