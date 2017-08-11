@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Router} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
@@ -17,9 +17,9 @@ export class ForgotPw {
   public form:FormGroup;
   public username:AbstractControl;
   public email:AbstractControl;
-  public submitted:boolean = false;
+  public submitted: boolean = false;
 
-  constructor(fb:FormBuilder, private authService: AuthService, private router: Router,private toastrService: ToastrService) {
+  constructor(fb:FormBuilder, private authService: AuthService, private router: Router,private route: ActivatedRoute,private toastrService: ToastrService) {
     this.form = fb.group({
       'username': ['', [this.checkUsername]],
       'email': ['', [this.checkEmail]]
@@ -44,21 +44,23 @@ export class ForgotPw {
 
   public onSubmit(values:any):void {
     this.submitted = true;
-    /*if (this.form.valid) {
-      const user = new User(values.username.toLowerCase(), values.password);
-      this.authService.signin(user)
+    if (this.form.valid) {
+      const usernameEmail = {
+        'username':values.username.toLowerCase(),
+        'email': values.email
+      };
+      this.authService.forgotPasswordEmail(usernameEmail)
         .subscribe(
           data => {
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('userId', data.userId);
-            this.router.navigateByUrl('/');
-            this.toastrService.info('I\'m glad to see you again!','Hi there, ' + values.username + '.');
+            this.router.navigateByUrl('/login');
+            this.toastrService.success(data.message,'Success');
+            this.form.reset({});
           },
           error =>{
-            this.toastrService.error(error.message,'Error')
+            this.toastrService.error(JSON.parse(error._body).message,'Ooops..');
           }
         );
-    }*/
+    }
   }
 
   ngOnInit(){

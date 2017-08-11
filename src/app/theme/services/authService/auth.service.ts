@@ -43,6 +43,16 @@ export class AuthService {
       });
   }
 
+  forgotPasswordEmail(usernameEmail: Object){
+    const body = JSON.stringify(usernameEmail);
+    const headers = new Headers({'Content-Type': 'application/json'});
+    return this.http.post('http://deployhandler.com:3000/api/users/forgotpw', body, {headers: headers})
+      .map((response: Response) => response.json())
+      .catch((error: Response) => {
+        return Observable.throw(error);
+      });
+  }
+
   closeAccount(){
     const token = localStorage.getItem('token')
       ? '?token=' + localStorage.getItem('token')
