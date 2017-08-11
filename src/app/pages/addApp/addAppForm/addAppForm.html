@@ -7,7 +7,7 @@
   </div>
   <div class="form-group" [ngClass]="{'has-error': (!appPort.valid && appPort.touched) , 'has-success': (appPort.valid && appPort.touched)}">
     <label for="appPort">Port number</label>
-      <input type="text" class="form-control" id="appPort" name="appPort" placeholder="Port your app is using" [formControl]="appPort" autocomplete="off" spellcheck="false" [(ngModel)]="portTmp">
+      <input type="text" class="form-control" id="appPort" name="appPort" placeholder="Port your app is using" [formControl]="appPort" autocomplete="off" spellcheck="false">
   </div>
   <div class="form-group" *ngIf="isNpm" [ngClass]="{'has-error': (!appNpmStart.valid && appNpmStart.touched), 'has-success': (appNpmStart.valid && appNpmStart.touched)}">
     <label for="appNpmStart">NPM start command</label>

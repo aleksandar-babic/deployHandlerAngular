@@ -18,6 +18,9 @@ import {ModalNpm} from "../modalNpm/modal.component";
     .status-button{
       width: 70px;
     }
+    .modal-content{
+      background-color: red!important;
+    }
   `]
 })
 export class HoverTable {
@@ -30,7 +33,7 @@ export class HoverTable {
   }
 
   onStart(appId,i){
-    this.toastrService.info('App is starting.','Give me a moment');
+    this.toastrService.info('App is starting..','Give me a moment');
     this.appsService.startApp(appId)
       .subscribe(
         data => {

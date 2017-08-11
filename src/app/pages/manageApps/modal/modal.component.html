@@ -1,39 +1,23 @@
-<ba-card title="Helper" baCardClass="with-scroll lists-widget">
-<!--<div class="modal-content">-->
-  <!--<div class="modal-header">
-    <h4 class="modal-title">{{modalHeader}}</h4>
-    <button class="close" aria-label="Close" (click)="closeModal()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>-->
-<!--  <div class="modal-body">-->
+<ba-card title="Modify {{localApp.name}}" baCardClass="with-scroll lists-widget modalModfiy">
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="appName">App name</label>
           <div class="input-group" [ngClass]="{'has-error': (!appName.valid && appName.touched), 'has-success': (appName.valid && appName.touched)}">
-            <input type="text" class="form-control with-primary-addon" id="appName" placeholder="App name" aria-describedby="appName" [formControl]="appName" value="{{localApp.name}}">
+            <input type="text" class="form-control with-primary-addon" id="appName" placeholder="App name" aria-describedby="appName" [formControl]="appName" [(ngModel)]="localApp.name">
             <span class="input-group-addon input-group-addon-primary addon-right " id="deployDomain">.deployhandler.com</span>
           </div>
         </div>
-        <ba-checkbox [(ngModel)]="localNpmState" [label]="'Start by NPM command'" name="npm" [ngModelOptions]="{standalone: true}"></ba-checkbox>
-
+        <ba-checkbox [(ngModel)]="localNpmState" [label]="'Start by NPM command'" name="npm" [ngModelOptions]="{standalone: true}" (click)="setValidationForNpm()"></ba-checkbox>
         <div class="form-group" [ngClass]="{'has-error': (!appEntryPoint.valid && appEntryPoint.touched), 'has-success': (appEntryPoint.valid && appEntryPoint.touched)}">
           <label for="appEntryPoint">{{(!localNpmState)?'Entry point':'NPM Command'}}</label>
-          <input type="text" class="form-control" *ngIf="!localNpmState" id="appEntryPoint" name="appEntryPoint" placeholder="Example: server.js" [formControl]="appEntryPoint" value="{{(localApp.entryPoint.indexOf('npm.') !== -1)?'':localApp.entryPoint}}">
-          <input type="text" class="form-control" *ngIf="localNpmState" id="appEntryPoint" name="appEntryPoint" placeholder="Example: start" [formControl]="appEntryPoint" value="{{(localApp.entryPoint.indexOf('npm.') !== -1)?localApp.entryPoint.split('.')[1]:''}}">
+          <input type="text" class="form-control" id="appEntryPoint" name="appEntryPoint" placeholder="{{entryPointPlacehldr}}" [formControl]="appEntryPoint" [(ngModel)]="localTmpEntryPoint">
         </div>
         <div class="form-group" [ngClass]="{'has-error': (!appPort.valid && appPort.touched) , 'has-success': (appPort.valid && appPort.touched)}">
           <label for="appPort">Port number</label>
           <input type="text" class="form-control" id="appPort" name="appPort" placeholder="Port your app is using"
-                 [formControl]="appPort" value="{{localApp.port}}">
+                 [formControl]="appPort" [(ngModel)]="localApp.port">
         </div>
-
         <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Update app</button>
       </form>
     <button class="btn btn-danger" (click)="onDelete()">Delete app</button>
-<!--  </div>-->
-  <!--<div class="modal-footer">
-    <button class="btn btn-primary confirm-btn" (click)="closeModal()">Close</button>
-  </div>-->
-<!--</div>-->
 </ba-card>
