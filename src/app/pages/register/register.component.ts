@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
 import {User} from "../../theme/services/authService/user.model";
 import {AuthService} from "../../theme/services/authService/auth.service";
 import {ToastrService} from "ngx-toastr";
+import {BaThemeSpinner} from "../../theme/services/baThemeSpinner/baThemeSpinner.service";
 
 @Component({
   selector: 'register',
@@ -24,7 +25,7 @@ export class Register {
 
   public submitted:boolean = false;
 
-  constructor(fb:FormBuilder, private authService: AuthService, private toastrService: ToastrService, private router: Router) {
+  constructor(fb:FormBuilder, private authService: AuthService,private _spinner: BaThemeSpinner, private toastrService: ToastrService, private router: Router) {
 
     this.form = fb.group({
       'userName': ['', Validators.compose([Validators.required, Validators.minLength(4), UsernameValidator.validate])],
@@ -44,6 +45,7 @@ export class Register {
 
   public onSubmit(values: any):void {
     this.submitted = true;
+    this._spinner.show();
     if (this.form.valid) {
       const user = new User(values.userName.toLowerCase(), values.passwords.password, values.email);
       this.authService.signup(user).subscribe(data => {
@@ -52,12 +54,15 @@ export class Register {
           localStorage.setItem('token', dataLogin.token);
           localStorage.setItem('userId', dataLogin.userId);
           this.router.navigateByUrl('/');
+          this._spinner.hide();
           this.toastrService.info('This is our dashboard. You can find docs in Getting started menu item.','Welcome to deployHandler, ' + values.userName);
         }, errorLogin => {
           this.toastrService.error(errorLogin.message,'Error');
+          this._spinner.hide();
         });
       }, error => {
         this.toastrService.error(error.message,'Error');
+        this._spinner.hide();
       });
     }
   }

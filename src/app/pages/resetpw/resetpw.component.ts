@@ -8,6 +8,7 @@ import {User} from "../../theme/services/authService/user.model";
 import { tokenNotExpired } from 'angular2-jwt';
 import {AuthService} from "../../theme/services/authService/auth.service";
 import {ToastrService} from "ngx-toastr";
+import {BaThemeSpinner} from "../../theme/services/baThemeSpinner/baThemeSpinner.service";
 
 @Component({
   selector: 'resetpw',
@@ -25,7 +26,7 @@ export class ResetPw implements OnInit{
   private token: string;
   public validToken: boolean = false;
 
-  constructor(fb:FormBuilder, private authService: AuthService, private toastrService: ToastrService, private router: Router,private activatedRoute: ActivatedRoute) {
+  constructor(fb:FormBuilder, private authService: AuthService, private _spinner: BaThemeSpinner, private toastrService: ToastrService, private router: Router,private activatedRoute: ActivatedRoute) {
 
     this.form = fb.group({
       'passwords': fb.group({
@@ -40,6 +41,7 @@ export class ResetPw implements OnInit{
   }
 
   public onSubmit(values: any):void {
+    this._spinner.show();
     this.submitted = true;
     if (this.form.valid) {
       console.log(values);
@@ -53,9 +55,11 @@ export class ResetPw implements OnInit{
           this.router.navigateByUrl('/login');
           this.toastrService.success(data.message,'Success');
           this.form.reset({});
+          this._spinner.hide();
         },
         error =>{
           this.toastrService.error(JSON.parse(error._body).message,'Ooops..');
+          this._spinner.hide();
         }
       );
     }

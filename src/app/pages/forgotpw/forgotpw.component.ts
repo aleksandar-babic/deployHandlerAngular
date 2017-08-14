@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import {AuthService} from "../../theme/services/authService/auth.service";
 import {EmailValidator} from "../../theme/validators/email.validator";
+import {BaThemeSpinner} from "../../theme/services/baThemeSpinner/baThemeSpinner.service";
 
 @Component({
   selector: 'forgotpw',
@@ -18,7 +19,7 @@ export class ForgotPw {
   public email:AbstractControl;
   public submitted: boolean = false;
 
-  constructor(fb:FormBuilder, private authService: AuthService, private router: Router,private route: ActivatedRoute,private toastrService: ToastrService) {
+  constructor(fb:FormBuilder, private authService: AuthService,private _spinner: BaThemeSpinner, private router: Router,private route: ActivatedRoute,private toastrService: ToastrService) {
     this.form = fb.group({
       'username': ['', [this.checkUsername]],
       'email': ['', [this.checkEmail]]
@@ -43,6 +44,7 @@ export class ForgotPw {
 
   public onSubmit(values:any):void {
     this.submitted = true;
+    this._spinner.show();
     if (this.form.valid) {
       const usernameEmail = {
         'username':values.username.toLowerCase(),
@@ -52,11 +54,13 @@ export class ForgotPw {
         .subscribe(
           data => {
             this.router.navigateByUrl('/login');
+            this._spinner.hide();
             this.toastrService.success(data.message,'Success');
             this.form.reset({});
           },
           error =>{
             this.toastrService.error(JSON.parse(error._body).message,'Ooops..');
+            this._spinner.hide();
           }
         );
     }
