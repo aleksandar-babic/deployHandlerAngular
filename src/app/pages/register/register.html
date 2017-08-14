@@ -2,7 +2,6 @@
   <div class="auth-block">
     <h1>Sign up to DeployHandler</h1>
     <a routerLink="/login" class="auth-link">Already have an account? Sign in!</a>
-
     <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form-horizontal">
       <div class="form-group row" [ngClass]="{'has-error': (!userName.valid && userName.touched), 'has-success': (userName.valid && userName.touched)}">
         <label for="userName" class="col-sm-2 control-label">Username</label>

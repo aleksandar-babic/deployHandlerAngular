@@ -53,6 +53,16 @@ export class AuthService {
       });
   }
 
+  forgotPasswordAction(passwordsGroup: Object,token: string){
+    const body = JSON.stringify(passwordsGroup);
+    const headers = new Headers({'Content-Type': 'application/json'});
+    return this.http.post('http://deployhandler.com:3000/api/users/forgotpwaction?token=' + token, body, {headers: headers})
+      .map((response: Response) => response.json())
+      .catch((error: Response) => {
+        return Observable.throw(error);
+      });
+  }
+
   closeAccount(){
     const token = localStorage.getItem('token')
       ? '?token=' + localStorage.getItem('token')

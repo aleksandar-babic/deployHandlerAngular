@@ -18,6 +18,11 @@
     "sign_in": "Sign in",
     "register": "I'm new user"
   },
+  "resetpw":{
+    "title":"Reset password",
+    "login_link":"I remembered my password, get me back to login!",
+    "resetpw_btn":"Set new password"
+  },
   "general": {
     "author": "Aleksandar Babic",
     "home": "Home",

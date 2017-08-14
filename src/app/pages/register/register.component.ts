@@ -61,4 +61,9 @@ export class Register {
       });
     }
   }
+
+  ngOnInit(){
+    if(this.authService.isLoggedIn())
+      this.router.navigateByUrl('/');
+  }
 }

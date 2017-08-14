@@ -3,7 +3,6 @@ import {Router, ActivatedRoute} from "@angular/router";
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
-import {User} from "../../theme/services/authService/user.model";
 import {AuthService} from "../../theme/services/authService/auth.service";
 import {EmailValidator} from "../../theme/validators/email.validator";
 

@@ -20,6 +20,10 @@ export const routes: Routes = [
     loadChildren: 'app/pages/forgotpw/forgotpw.module#ForgotPwModule'
   },
   {
+    path: 'resetpw',
+    loadChildren: 'app/pages/resetpw/resetpw.module#ResetPwModule'
+  },
+  {
     path: '',
     component: Pages,
     canActivate: [AuthGuard],
