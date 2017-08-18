@@ -3,6 +3,7 @@ import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/form
 import {EqualPasswordsValidator} from '../../theme/validators';
 
 
+import {BaThemeSpinner} from "../../theme/services/baThemeSpinner/baThemeSpinner.service";
 import {AppsService} from "../../theme/services/appsService/apps.service";
 import {ToastrService} from "ngx-toastr";
 import {AuthService} from "../../theme/services/authService/auth.service";
@@ -34,7 +35,8 @@ export class AccountSettingsComponent {
 
   public apps;
 
-  constructor(fb:FormBuilder, private toastrService: ToastrService,private authService: AuthService,private appsService: AppsService,private todoService: TodoService, private router: Router) {
+  constructor(fb:FormBuilder, private toastrService: ToastrService,private authService: AuthService,private appsService: AppsService,
+              private todoService: TodoService, private router: Router, private _spinner: BaThemeSpinner) {
     this.appsService.getApps().subscribe((apps) => {
       this.apps = apps;
     }, error => this.toastrService.warning('Error while getting list of your app URLs','Oh no.'));
@@ -54,21 +56,27 @@ export class AccountSettingsComponent {
   }
 
   public onSubmitPw(values: any):void {
+    this._spinner.show();
     if (this.form.valid) {
       const passwordGroup = {current: values.currentPassword, new: values.passwords.password};
       this.authService.changePassword(passwordGroup).subscribe(data => {
         this.toastrService.success('Your password has been changed','Done');
+        this._spinner.hide();
       }, error => {
         this.toastrService.error(JSON.parse(error._body).message,'Error');
+        this._spinner.hide();
       });
     }
   }
 
   public onWipeTodos(){
+    this._spinner.show();
     this.todoService.wipeTodos().subscribe(data=>{
       this.toastrService.info('Todos are now wiped.','Success');
+      this._spinner.hide();
     },error=>{
       this.toastrService.error(JSON.parse(error._body).message,'Error');
+      this._spinner.hide();
     });
   }
 

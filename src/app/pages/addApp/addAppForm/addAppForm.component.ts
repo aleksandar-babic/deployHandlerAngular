@@ -3,6 +3,7 @@ import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/form
 import {ToastrService} from "ngx-toastr";
 import {AppsService} from "../../../theme/services/appsService/apps.service";
 import {PortValidator, EntryPointValidator,AppNameValidator} from "../../../theme/validators";
+import {BaThemeSpinner} from "../../../theme/services/baThemeSpinner/baThemeSpinner.service";
 
 import {App} from "../../../theme/services/appsService/apps.model";
 
@@ -28,7 +29,7 @@ export class AddAppForm{
   isNpm: boolean = false;
   isNginx: boolean = true;
 
-  constructor(fb:FormBuilder,private toastrService: ToastrService, private appsService: AppsService) {
+  constructor(fb:FormBuilder,private toastrService: ToastrService, private appsService: AppsService, private _spinner: BaThemeSpinner) {
     this.form = fb.group({
       'appName': ['', Validators.compose([Validators.required,AppNameValidator.validate])],
       'appEntryPoint': ['', Validators.compose([Validators.required,EntryPointValidator.validate])],
@@ -58,6 +59,7 @@ export class AddAppForm{
   }
 
   onSubmit() {
+    this._spinner.show();
     let app;
     if(!this.isNpm) {
       app = new App(this.form.value.appName, this.form.value.appEntryPoint, this.form.value.appPort);
@@ -71,9 +73,11 @@ export class AddAppForm{
           this.toastrService.success('App ' + app.name + ' has been added.','Good job!');
           app.status = 'stopped';
           this.appsService.getAppsArray().push(data);
+          this._spinner.hide();
         },
         error => {
           this.toastrService.warning(JSON.parse(error._body).message,'Oh no.');
+          this._spinner.hide();
         }
       );
     this.form.reset({

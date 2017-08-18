@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
 
     //Token and userId are set, but token is not valid, redirect to login page and send notification
     if(localStorage.getItem('token') && localStorage.getItem('userId') && !tokenNotExpired()){
-      this.toastrService.warning('Your secure token expired. (Token is valid for 20 minutes)','Token expired');
+      this.toastrService.warning('Your secure token expired. (Token is valid for 60 minutes)','Token expired');
       this.authService.logout();
       this.router.navigate(['/login']);
       return false;
