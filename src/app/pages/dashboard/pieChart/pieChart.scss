@@ -50,6 +50,33 @@
     }
   }
 
+  @media screen and (min-width: 1326px) and (max-width: 1649px){
+    .chart-icon {
+      display: block;
+    }
+    .description{
+      padding: 20px 0 0 0!important;
+      font-size: 1.1em;
+    }
+
+    .card > .card-body {
+      padding: 15px 5px;
+    }
+    .chart{
+      width: 60px;
+      height: 84px;
+    }
+
+    .chart canvas {
+      top: 10px!important;
+      width: 69px;
+    }
+
+    .chart-icon {
+      width: 70px;
+    }
+  }
+
   .chart {
     position: relative;
     display: inline-block;
