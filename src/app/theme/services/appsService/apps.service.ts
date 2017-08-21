@@ -23,7 +23,7 @@ export class AppsService {
     const token = localStorage.getItem('token')
       ? '?token=' + localStorage.getItem('token')
       : '';
-    return this.http.post('http://deployhandler.com:3000/api/apps' + token, body, {headers: headers})
+    return this.http.post('https://api.deployhandler.com/api/apps' + token, body, {headers: headers})
       .map((response: Response) => {
         const result = response.json();
         const appRes = new App(
@@ -47,7 +47,7 @@ export class AppsService {
     const token = localStorage.getItem('token')
       ? '?token=' + localStorage.getItem('token')
       : '';
-    return this.http.get('http://deployhandler.com:3000/api/apps' + token)
+    return this.http.get('https://api.deployhandler.com/api/apps' + token)
       .map((response: Response) => {
         const apps = response.json();
         let localApps: App[] = [];
@@ -75,7 +75,7 @@ export class AppsService {
     const token = localStorage.getItem('token')
       ? '?token=' + localStorage.getItem('token')
       : '';
-    return this.http.put('http://deployhandler.com:3000/api/apps/' + app.appId + token, body, {headers: headers})
+    return this.http.put('https://api.deployhandler.com/api/apps/' + app.appId + token, body, {headers: headers})
       .map((response: Response) => response.json())
       .catch((error: Response) => {
         return Observable.throw(error.json());
@@ -87,7 +87,7 @@ export class AppsService {
     const token = localStorage.getItem('token')
       ? '?token=' + localStorage.getItem('token')
       : '';
-    return this.http.delete('http://deployhandler.com:3000/api/apps/' + app.appId + token)
+    return this.http.delete('https://api.deployhandler.com/api/apps/' + app.appId + token)
       .map((response: Response) => response.json())
       .catch((error: Response) => {
         return Observable.throw(error.json());
@@ -99,7 +99,7 @@ export class AppsService {
     const token = localStorage.getItem('token')
       ? '?token=' + localStorage.getItem('token')
       : '';
-    return this.http.post('http://deployhandler.com:3000/api/apps/' + appId + '/start' + token, '' , {headers: headers})
+    return this.http.post('https://api.deployhandler.com/api/apps/' + appId + '/start' + token, '' , {headers: headers})
       .map((response: Response) => {
         response.json();
       })
@@ -113,7 +113,7 @@ export class AppsService {
     const token = localStorage.getItem('token')
       ? '?token=' + localStorage.getItem('token')
       : '';
-    return this.http.post('http://deployhandler.com:3000/api/apps/' + appId + '/stop' + token, '' , {headers: headers})
+    return this.http.post('https://api.deployhandler.com/api/apps/' + appId + '/stop' + token, '' , {headers: headers})
       .map((response: Response) => {
         response.json();
       })
@@ -127,7 +127,7 @@ export class AppsService {
     const token = localStorage.getItem('token')
       ? '?token=' + localStorage.getItem('token')
       : '';
-    return this.http.post('http://deployhandler.com:3000/api/apps/' + appId + '/install' + token, '' , {headers: headers})
+    return this.http.post('https://api.deployhandler.com/api/apps/' + appId + '/install' + token, '' , {headers: headers})
       .map((response: Response) => {
         return response.json();
       })

@@ -14,7 +14,7 @@ export class PieChartService {
       ? '?token=' + localStorage.getItem('token')
       : '';
     let pieColor = this._baConfig.get().colors.custom.dashboardPieChart;
-    return this.http.get('http://deployhandler.com:3000/api/stats' + token)
+    return this.http.get('https://api.deployhandler.com/api/stats' + token)
       .map((response: Response) =>{
         let data = response.json();
         let statsArray = [

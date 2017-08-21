@@ -20,9 +20,8 @@ import { PAGES_MENU } from './pages.menu';
       <div class="al-footer-main clearfix">
         <div class="al-copy">&copy; <a href="https://aleksandar.alfa-ing.com" translate target="_blank">{{'general.author'}}</a> 2017</div>
         <ul class="al-share clearfix">
-          <li><i class="socicon socicon-facebook"></i></li>
-          <li><i class="socicon socicon-linkedin"></i></li>
-          <li><i class="socicon socicon-github"></i></li>
+          <li><a href="https://www.linkedin.com/in/aleksandar-babi%C4%87-45a862131/" target="_blank"><i class="socicon socicon-linkedin"></i></a></li>
+          <li><a href="https://github.com/aleksandar-babic" target="_blank"><i class="socicon socicon-github"></i></a></li>
         </ul>
       </div>
     </footer>

@@ -20,7 +20,7 @@ export class TodoService {
     const token = localStorage.getItem('token')
       ? '?token=' + localStorage.getItem('token')
       : '';
-    return this.http.get('http://deployhandler.com:3000/api/todos' + token)
+    return this.http.get('https://api.deployhandler.com/api/todos' + token)
       .map((response: Response) =>response.json())
       .catch((error: Response) => {
         return Observable.throw(error);
@@ -38,7 +38,7 @@ export class TodoService {
     const token = localStorage.getItem('token')
       ? '?token=' + localStorage.getItem('token')
       : '';
-    return this.http.put('http://deployhandler.com:3000/api/todos/' + todoId + token, body, options)
+    return this.http.put('https://api.deployhandler.com/api/todos/' + todoId + token, body, options)
       .map((response: Response) =>response.json())
       .catch((error: Response) => {
         return Observable.throw(error);
@@ -56,7 +56,7 @@ export class TodoService {
     const token = localStorage.getItem('token')
       ? '?token=' + localStorage.getItem('token')
       : '';
-    return this.http.post('http://deployhandler.com:3000/api/todos' + token,body,options)
+    return this.http.post('https://api.deployhandler.com/api/todos' + token,body,options)
       .map((response: Response) =>response.json())
       .catch((error: Response) => {
         return Observable.throw(error);
@@ -67,7 +67,7 @@ export class TodoService {
     const token = localStorage.getItem('token')
       ? '?token=' + localStorage.getItem('token')
       : '';
-    return this.http.delete('http://deployhandler.com:3000/api/todos/' + todoId + token)
+    return this.http.delete('https://api.deployhandler.com/api/todos/' + todoId + token)
       .map((response: Response) =>response.json())
       .catch((error: Response) => {
         return Observable.throw(error);
@@ -78,7 +78,7 @@ export class TodoService {
     const token = localStorage.getItem('token')
       ? '?token=' + localStorage.getItem('token')
       : '';
-    return this.http.delete('http://deployhandler.com:3000/api/todos' + token)
+    return this.http.delete('https://api.deployhandler.com/api/todos' + token)
       .map((response: Response) =>response.json())
       .catch((error: Response) => {
         return Observable.throw(error);

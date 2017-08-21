@@ -13,7 +13,7 @@ export class AuthService {
   signup(user: User) {
     const body = JSON.stringify(user);
     const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.post('http://deployhandler.com:3000/api/users', body, {headers: headers})
+    return this.http.post('https://api.deployhandler.com/api/users', body, {headers: headers})
       .map((response: Response) => response.json())
       .catch((error: Response) => {
         return Observable.throw(error.json());
@@ -23,7 +23,7 @@ export class AuthService {
   signin(user: User) {
     const body = JSON.stringify(user);
     const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.post('http://deployhandler.com:3000/api/users/login', body, {headers: headers})
+    return this.http.post('https://api.deployhandler.com/api/users/login', body, {headers: headers})
       .map((response: Response) => response.json())
       .catch((error: Response) => {
         return Observable.throw(error.json());
@@ -36,7 +36,7 @@ export class AuthService {
     const token = localStorage.getItem('token')
       ? '?token=' + localStorage.getItem('token')
       : '';
-    return this.http.post('http://deployhandler.com:3000/api/users/changepw' + token, body, {headers: headers})
+    return this.http.post('https://api.deployhandler.com/api/users/changepw' + token, body, {headers: headers})
       .map((response: Response) => response.json())
       .catch((error: Response) => {
         return Observable.throw(error);
@@ -46,7 +46,7 @@ export class AuthService {
   forgotPasswordEmail(usernameEmail: Object){
     const body = JSON.stringify(usernameEmail);
     const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.post('http://deployhandler.com:3000/api/users/forgotpw', body, {headers: headers})
+    return this.http.post('https://api.deployhandler.com/api/users/forgotpw', body, {headers: headers})
       .map((response: Response) => response.json())
       .catch((error: Response) => {
         return Observable.throw(error);
@@ -56,7 +56,7 @@ export class AuthService {
   forgotPasswordAction(passwordsGroup: Object,token: string){
     const body = JSON.stringify(passwordsGroup);
     const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.post('http://deployhandler.com:3000/api/users/forgotpwaction?token=' + token, body, {headers: headers})
+    return this.http.post('https://api.deployhandler.com/api/users/forgotpwaction?token=' + token, body, {headers: headers})
       .map((response: Response) => response.json())
       .catch((error: Response) => {
         return Observable.throw(error);
@@ -67,7 +67,7 @@ export class AuthService {
     const token = localStorage.getItem('token')
       ? '?token=' + localStorage.getItem('token')
       : '';
-    return this.http.delete('http://deployhandler.com:3000/api/users/close-account' + token)
+    return this.http.delete('https://api.deployhandler.com/api/users/close-account' + token)
       .map((response: Response) =>response.json())
       .catch((error: Response) => {
         return Observable.throw(error);
