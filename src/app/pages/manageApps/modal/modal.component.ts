@@ -5,6 +5,7 @@ import {AppsService} from "../../../theme/services/appsService/apps.service";
 import {App} from "../../../theme/services/appsService/apps.model";
 import {PortValidator, EntryPointValidator, AppNameValidator} from "../../../theme/validators";
 import {ToastrService} from "ngx-toastr";
+import {BaThemeSpinner} from "../../../theme/services/baThemeSpinner/baThemeSpinner.service";
 declare var $:JQueryStatic;
 
 @Component({
@@ -29,7 +30,7 @@ export class Modal implements OnInit {
   public localTmpEntryPoint: string;
   public entryPointPlacehldr: string;
 
-  constructor(private fb:FormBuilder,private activeModal: NgbActiveModal, private appsService: AppsService, private toastrService: ToastrService) {}
+  constructor(private fb:FormBuilder,private activeModal: NgbActiveModal, private appsService: AppsService, private toastrService: ToastrService, private _spinner: BaThemeSpinner) {}
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -81,6 +82,7 @@ export class Modal implements OnInit {
 
 
   onSubmit(){
+    this._spinner.show();
     if(this.form.value.appName)
       this.localApp.name = this.form.value.appName;
     if(this.form.value.appEntryPoint) {
@@ -92,32 +94,32 @@ export class Modal implements OnInit {
     if(this.form.value.appPort)
       this.localApp.port = this.form.value.appPort;
 
-    /*if(!this.form.value.appPort && !this.form.value.appEntryPoint && !this.form.value.appName) {
-      this.activeModal.close();
-      return this.toastrService.info('You did not change anything.', 'No changes detected');
-    }*/
-
     this.appsService.editApp(this.localApp)
       .subscribe(
         data => {
-          this.toastrService.success('App ' + data.name + ' has been edited.','Done!');
           this.activeModal.close();
+          this._spinner.hide();
+          this.toastrService.success('App ' + data.name + ' has been edited.','Done!');
         },
         error => {
+          this._spinner.hide();
           this.toastrService.warning(error.message,'Oh no.');
         }
       );
   }
   onDelete(){
     if (window.confirm('Are you sure you want to delete?')) {
+      this.activeModal.close();
+      this._spinner.show();
       this.appsService.deleteApp(this.localApp)
         .subscribe(
           data => {
             this.toastrService.success('App ' + this.localApp.name + ' has been Deleted.','Done!');
-            this.activeModal.close();
+            this._spinner.hide();
           },
           error => {
             this.toastrService.warning(JSON.parse(error._body).message,'Oh no.');
+            this._spinner.hide();
           }
         );
     }

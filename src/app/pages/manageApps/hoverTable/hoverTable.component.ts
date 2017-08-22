@@ -34,6 +34,8 @@ export class HoverTable {
 
   onStart(appId,i){
     this.toastrService.info('App is starting..','Give me a moment');
+    let saveValue = this.tableData[i].status;
+    this.tableData[i].status = 'starting';
     this.appsService.startApp(appId)
       .subscribe(
         data => {
@@ -42,11 +44,14 @@ export class HoverTable {
         },
         error => {
           this.toastrService.warning(JSON.parse(error._body).message,'Oh no.');
+          this.tableData[i].status = saveValue;
         }
       );
   }
   onStop(appId,i){
     this.toastrService.info('App is stopping.','Give me a moment');
+    let saveValue = this.tableData[i].status;
+    this.tableData[i].status = 'stopping';
     this.appsService.stopApp(appId)
       .subscribe(
         data => {
@@ -55,6 +60,7 @@ export class HoverTable {
         },
         error => {
           this.toastrService.warning(JSON.parse(error._body).message,'Oh no.');
+          this.tableData[i].status = saveValue;
         }
       );
   }
