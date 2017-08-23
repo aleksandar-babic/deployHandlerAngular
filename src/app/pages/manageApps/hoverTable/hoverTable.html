@@ -14,7 +14,7 @@
       <td><input type="text" disabled [(ngModel)]="tableData[i].name" class="text-center"> </td>
       <td><input type="text" disabled [(ngModel)]="tableData[i].entryPoint"></td>
       <td><input type="text" disabled [(ngModel)]="tableData[i].port"></td>
-      <td><input type="text" disabled [(ngModel)]="tableData[i].status" [ngStyle]="{'color':(tableData[i].status=='stopped')?'#e85656':'#90b900'}"></td>
+      <td><input type="text" disabled [(ngModel)]="tableData[i].status" [ngStyle]="{'color':(tableData[i].status=='stopped' || tableData[i].status=='stopping')?'#e85656':'#90b900'}"></td>
       <td>
         <button class="status-button btn btn-xs btn-success" (click)="onStart(app.appId, i)">Start</button>
         <button class="status-button btn btn-xs btn-danger" (click)="onStop(app.appId, i)">Stop</button>
